@@ -1,0 +1,7 @@
+class User < ApplicationRecord
+  has_many :user_articles
+  has_many :articles, through: :user_articles
+
+  has_many :comments
+  has_many :comment_articles, through: :comments, source: :article
+end

@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.create(name: "Tom")
+
+article01 = Article.create(title: "Hello World")
+article02 = Article.create(title: "Goodbye World")
+article03 = Article.create(title: "Hello God")
+
+user_article = UserArticle.create(user_id: 1, article_id: 1)
+comment = Comment.create(content: "good article", user_id: 1, article_id: 2)

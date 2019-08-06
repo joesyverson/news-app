@@ -24,6 +24,7 @@
 * A P I key
 * D B validations
 * serializers
+* tests
 * vanilla C S S for desktop and mobile
 
 *notes*
@@ -53,23 +54,27 @@
   - headlines
   - about
   - contact
+  - terms of use
+  - privacy
 - a registered user should be able to create a secure password that gives them access to the following features
-  - friends
-  - subject tags
   - commenting
     - mentions
+    - subject tags
+  - friends
   - saving articles
 - a user should be able to search articles by
-  - friend's saved articles
   - subject tags
-  - title / description
-  - author
+  - title / description / author / periodical
   - date
+  - articles should be filtered by saved / commented / tagged
 
 *models*
   `excluding I D and timestamps`
 
 - location
+  - city
+  - province / state
+  - state / nation
 - user_locations
 - users
   - name
