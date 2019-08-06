@@ -71,28 +71,32 @@
 *models*
   `excluding I D and timestamps`
 
-- location
+<!-- - location
   - city
   - province / state
-  - state / nation
-- user_locations
-- users
+  - state / nation -->
+<!-- - users
   - name
   - password
   - age
-  - email
-- articles
+  - email -->
+<!-- - articles
   - title
   - author
   - description
   - published_at
   - src
   - url
-  - url_to_image
+  - url_to_image -->
 <!-- - comments -->
-- article_comments
-  - author (user)
-  - content
-  - tags
+<!-- - article_comments
+  - author_id
+  - article_id
+  - content -->
+<!-- - categories
+- tags -->
+
 - article_mentions
-- user_articles
+<!-- - user_articles
+  - user_id
+  - article_id -->
