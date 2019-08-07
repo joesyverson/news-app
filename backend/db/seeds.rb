@@ -16,7 +16,7 @@ a_s_c = Category.create(name:"Art, Sports and Culture")
 h_p = Category.create(name:"Politics and History")
 
 user01 = User.create(name: "Tom", location_id: location01.id, password: "satan", email: "atom.syvo@gmail.com", age: 32)
-user02 = User.create(name: "Joe", location_id: location02.id, password: "satan", email: "atom.syvo@gmail.com", age: 29)
+user02 = User.create(name: "Joe", location_id: location02.id, password: "special", email: "atom.syvo@gmail.com", age: 29)
 
 user01.followers << user02
 
@@ -27,6 +27,8 @@ article03 = Article.create(title: "Hello God", author: "Danielle", description: 
 user_article = UserArticle.create(user_id: user01.id, article_id: article01.id)
 comment = Comment.create(content: "good article", user_id: user01.id, article_id: article02.id)
 mention = Mention.create(article_id: article03.id, user_id: user01.id)
+
+ 
 
 tag01 = Tag.create(category_id: 01, article_id: 01)
 tag02 = Tag.create(category_id: 01, article_id: 01)
