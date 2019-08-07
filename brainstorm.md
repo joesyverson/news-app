@@ -2,29 +2,33 @@
 
 *features / technology*
 
-* J W T authorization
+* J W T authorization, hidden secret
 * React Router
+
 * self referential user relation
-  * friends
-  * message (web sockets)
-    * chatroom per topic
-  * database stores user avatar-images (https://edgeguides.rubyonrails.org/active_storage_overview.html)
+  * followers
+  <!-- * message (web sockets) -->
+    <!-- * chatroom per topic -->
+  <!-- * database stores user avatar-images (https://edgeguides.rubyonrails.org/active_storage_overview.html) -->
 * news A P I
   * https://newsapi.org/
   * comments and user-tagging
-* parallel history
-  * https://history.muffinlabs.com/#api
-* weather
-  * https://developer.yahoo.com/weather/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAACB9VIChli4jSDVzc478-VAFo7HM1C1t9kv-VWCXNoJ2Vnxu0GDoJIuoKHaG0svMOmc3i_hPgNJRpgX_OEQzWlubqaNYl7_QIf3Z7RkGp-Vy7nfgE-XXNoO7CTzopxnL4OieUdsjkhxref1o7JJzv47Di01LXDnRqWxrTMpxQc4d
-* clock / calendar / journal
-* email updates for mentions / tags
-* donation by card
-  * https://stripe.com/
-* namespacing
-* A P I key
+<!-- * parallel history
+  * https://history.muffinlabs.com/#api -->
+<!-- * weather
+  * https://developer.yahoo.com/weather/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAACB9VIChli4jSDVzc478-VAFo7HM1C1t9kv-VWCXNoJ2Vnxu0GDoJIuoKHaG0svMOmc3i_hPgNJRpgX_OEQzWlubqaNYl7_QIf3Z7RkGp-Vy7nfgE-XXNoO7CTzopxnL4OieUdsjkhxref1o7JJzv47Di01LXDnRqWxrTMpxQc4d -->
+<!-- * clock / calendar / journal -->
+<!-- * email updates for mentions / tags -->
+<!-- * donation by card
+  * https://stripe.com/ -->
+<!-- * namespacing -->
+<!-- * A P I key -->
 * D B validations
+<!-- * notifications -->
 * serializers
-* tests
+<!-- * tests -->
+<!-- * redux -->
+<!-- * stories (a user can create labels that connect stories as they develop) -->
 * vanilla C S S for desktop and mobile
 
 *notes*
@@ -50,23 +54,27 @@
 
 *user stories*
 
-- without registration, a user should have access to
+- without registration or login, a user should have access to
   - headlines
-  - about
-  - contact
-  - terms of use
-  - privacy
+  - signup, login
+  - about, contact, terms of use, privacy
 - a registered user should be able to create a secure password that gives them access to the following features
   - commenting
-    - mentions
     - subject tags
   - friends
   - saving articles
 - a user should be able to search articles by
   - subject tags
   - title / description / author / periodical
-  - date
+  <!-- - date -->
   - articles should be filtered by saved / commented / tagged
+  - articles should be ordered by last updated
+- a user should have access to other users through comments
+- a user's profile page should list their friends
+- a user should be able to search friends and their saved articles from their profile
+- a user should be able to delete saved articles, comments, mentions from the article show page and profile
+- a user should be able to edit their profile
+<!-- - a user should be able to search other users by location -->
 
 *models*
   `excluding I D and timestamps`
@@ -95,8 +103,9 @@
   - content -->
 <!-- - categories
 - tags -->
-
-- article_mentions
 <!-- - user_articles
   - user_id
   - article_id -->
+- mentions
+  - user_id
+  - article_id
