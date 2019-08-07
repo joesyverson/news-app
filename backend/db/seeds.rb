@@ -6,12 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user01 = User.create(name: "Tom")
-user02 = User.create(name: "Joe")
+location01 = Location.create(city: "New York", province: "N Y", state: "U S A")
+location02 = Location.create(city: "Las Vegas", province: "N V", state: "U S A")
 
-article01 = Article.create(title: "Hello World")
-article02 = Article.create(title: "Goodbye World")
-article03 = Article.create(title: "Hello God")
+t_d = Category.create(name:"Technology and Design")
+s_h = Category.create(name:"Health and Spirituality")
+p_s = Category.create(name:"Science and Philosophy")
+a_s_c = Category.create(name:"Art, Sports and Culture")
+h_p = Category.create(name:"Politics and History")
 
-user_article = UserArticle.create(user_id: 1, article_id: 1)
-comment = Comment.create(content: "good article", user_id: 1, article_id: 2)
+user01 = User.create(name: "Tom", location_id: location01.id, password: "satan", email: "atom.syvo@gmail.com", age: 32)
+user02 = User.create(name: "Joe", location_id: location02.id, password: "satan", email: "atom.syvo@gmail.com", age: 29)
+
+user01.followers << user02
+
+article01 = Article.create(title: "Hello World", author: "Josh", description: "Test", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+article02 = Article.create(title: "Goodbye World", author: "Otha", description: "Testo", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+article03 = Article.create(title: "Hello God", author: "Danielle", description: "Testing", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+
+user_article = UserArticle.create(user_id: user01.id, article_id: article01.id)
+comment = Comment.create(content: "good article", user_id: user01.id, article_id: article02.id)
+mention = Mention.create(article_id: article03.id, user_id: user01.id)
+
+tag01 = Tag.create(category_id: 01, article_id: 01)
+tag02 = Tag.create(category_id: 01, article_id: 01)
+tag03 = Tag.create(category_id: 01, article_id: 01)
