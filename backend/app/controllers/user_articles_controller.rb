@@ -1,0 +1,4 @@
+class UserArticlesController < ApplicationController
+
+
+end

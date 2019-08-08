@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+
+  # auth
+
   post '/login', to: 'auth#create'
-  post '/logout', to: 'auth#destroy'
 
   # user
 
   post '/users/signup', to: 'users#create'
-  get '/user/profile', to: 'users#profile'
+  get '/users/profile', to: 'users#profile'
   patch '/users/profile/edit', to: 'users#update'
   delete '/users/delete', to: 'users#destroy'
 
@@ -15,19 +17,17 @@ Rails.application.routes.draw do
   get '/users/articles/mentioned', to: 'users#show_saved_articles'
   get '/users/articles/commented', to: 'users#show_saved_articles'
 
+  post '/follows', to: 'users#follow'
+  delete '/follows/:id', to: 'users#unfollow'
+
   # articles
 
   post '/articles', to: 'articles#create_or_update'
 
-  # follows
-
-  post '/follows', to: 'follows#create'
-  delete '/delete/:id', to: 'follows#destroy'
-
   # user_articles
 
-  post '/user-articles', to: '/user_articles#create'
-  delete '/user-articles', to: 'user_articles#destroy'
+  post '/user-articles', to: 'user_articles#create'
+  delete '/user-articles/:id', to: 'user_articles#destroy'
 
   # comments
 

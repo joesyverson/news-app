@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: :create
 
   def create
+    # debugger
     user = User.create(user_params)
-    debugger
     if user.valid?
       render json: {token: encode_token(user)}
     else
@@ -10,9 +11,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # def profile
-  #   render json: current_user
-  # end
+  def profile
+    # debugger
+    render json: cur_user, include: "**"
+  end
 
   private
 

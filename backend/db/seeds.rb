@@ -15,8 +15,8 @@ p_s = Category.create(name:"Science and Philosophy")
 a_s_c = Category.create(name:"Art, Sports and Culture")
 h_p = Category.create(name:"Politics and History")
 
-user01 = User.create(name: "Tom", location_id: location01.id, password: "satan", email: "atom.syvo@gmail.com", age: 32)
-user02 = User.create(name: "Joe", location_id: location02.id, password: "special", email: "josephgavinsyverson@gmail.com", age: 29)
+user01 = User.create(name: "tom", location_id: location01.id, password: "satan", email: "atom.syvo@gmail.com", age: 32)
+user02 = User.create(name: "joe", location_id: location02.id, password: "special", email: "josephgavinsyverson@gmail.com", age: 29)
 
 user01.followers << user02
 
