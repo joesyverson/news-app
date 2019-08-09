@@ -27,19 +27,19 @@ Rails.application.routes.draw do
 
   # user_articles
 
-  post '/user-articles', to: 'user_articles#create'
-  delete '/user-articles/:id', to: 'user_articles#destroy'
+  post '/user-articles', to: 'user_articles#create' #
+  delete '/user-articles/:id', to: 'user_articles#destroy' #
 
   # comments
 
-  post '/comments', to: 'comments#create'
-  patch '/comments/:id', to: 'comments#update'
-  delete '/comments/:id', to: 'comments#destroy'
+  post '/comments', to: 'comments#create' #
+  patch '/comments/:id', to: 'comments#update' #
+  delete '/comments/:id', to: 'comments#destroy' #
 
   # mentions
 
-  post '/mentions', to: 'mentions#create'
-  delete '/mention/:id', to: 'mentions#destroy#'
+  post '/mentions', to: 'mentions#create' #
+  delete '/mentions/:id', to: 'mentions#destroy' #
 
   # tags
 
