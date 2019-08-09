@@ -2,27 +2,28 @@ Rails.application.routes.draw do
 
   # auth
 
-  post '/login', to: 'auth#create'
+  post '/login', to: 'auth#create' #
 
   # user
 
-  post '/users/signup', to: 'users#create'
-  get '/users/profile', to: 'users#profile'
-  patch '/users/profile/edit', to: 'users#update'
-  delete '/users/delete', to: 'users#destroy'
+  post '/users/signup', to: 'users#create' #
+  get '/users/profile', to: 'users#profile' #
+  patch '/users/profile/edit', to: 'users#update' #
+  delete '/users/delete', to: 'users#destroy' #
 
-  get '/usesr/show/:id', to: 'user#show'
+  get '/users/:id', to: 'users#show'
 
-  get '/users/articles/saved', to: 'users#show_saved_articles'
-  get '/users/articles/mentioned', to: 'users#show_saved_articles'
-  get '/users/articles/commented', to: 'users#show_saved_articles'
+  # get '/users/articles/saved', to: 'users#show_saved_articles'
+  # get '/users/articles/mentioned', to: 'users#show_saved_articles'
+  # get '/users/articles/commented', to: 'users#show_saved_articles'
 
-  post '/follows', to: 'users#follow'
-  delete '/follows/:id', to: 'users#unfollow'
+  post '/follow/:id', to: 'users#follow' #
+  delete '/unfollow/:id', to: 'users#unfollow' #
 
   # articles
 
-  post '/articles', to: 'articles#create_or_update'
+  post '/articles', to: 'articles#create' #
+  get '/articles/:title', to: 'articles#show' #
 
   # user_articles
 
