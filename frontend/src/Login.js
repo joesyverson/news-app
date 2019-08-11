@@ -3,7 +3,7 @@ import React from 'react';
 class Login extends React.Component {
 
   state = {
-    username: "",
+    name: "",
     password: ""
   }
 
@@ -13,8 +13,21 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    localStorage.token = true
-    this.props.history.push("/")
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if (data.token)  {
+        localStorage.token = data.token
+        this.props.history.push('/')
+      }
+    })
   }
 
   render() {
@@ -24,9 +37,9 @@ class Login extends React.Component {
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             type="text"
-            name="username"
+            name="name"
             placeholder="username"
-            value={this.state.username}
+            value={this.state.name}
             onChange={(e) => this.handleChange(e)}/>
           <input
             type="password"
