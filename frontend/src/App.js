@@ -7,25 +7,13 @@ import Profile from './Profile.js';
 class App extends React.Component {
 
   state = {
-    username: "",
     extAPIArticles: []
-  }
-
-  renderWhichOptions = () => {
-    if(this.state.username) {
-      return "profile, invite a friend"
-    } else {
-      return "login, signup"
-    }
   }
 
   render() {
     return (
       <div>
-        <h1>app-title</h1>
-        <div>
-          {this.renderWhichOptions()}
-        </div>
+        <h1>APP TITLE</h1>
         <Switch>
           <Route
             path="/profile"
