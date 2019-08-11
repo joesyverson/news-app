@@ -2,11 +2,12 @@ import React from 'react';
 
 class Signup extends React.Component {
 
+
   state = {
-    username: "",
+    name: "",
     password: "",
     age: 0,
-    location: "",
+    location_id: 0,
     email: ""
   }
 
@@ -16,8 +17,21 @@ class Signup extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    localStorage.token = true
-    this.props.history.push("/")
+    fetch('http://localhost:3000/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if (data.token)  {
+        localStorage.token = data.token
+        this.props.history.push('/')
+      }
+    })
   }
 
   render() {
@@ -27,9 +41,9 @@ class Signup extends React.Component {
         <form onSubmit={(e) => this.handleSubmit(e)}>
         <input
           type="text"
-          name="username"
+          name="name"
           placeholder="username"
-          value={this.state.username}
+          value={this.state.name}
           onChange={(e) => this.handleChange(e)}/>
         <input
           type="password"
@@ -44,10 +58,10 @@ class Signup extends React.Component {
           value={this.state.age}
           onChange={(e) => this.handleChange(e)}/>
         <input
-          type="text"
-          name="location"
+          type="number"
+          name="location_id"
           placeholder="location"
-          value={this.state.location}
+          value={this.state.location_id}
           onChange={(e) => this.handleChange(e)}/>
         <input
           type="email"

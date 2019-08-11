@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: :create
 
   def create # signup
+    # debugger
     user = User.create(user_params)
     if user.valid?
       render json: {token: encode_token(user)}
