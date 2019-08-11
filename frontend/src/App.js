@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
 
 import ArticleContainer from './ArticleContainer.js';
 import Profile from './Profile.js';
@@ -7,7 +7,7 @@ import Profile from './Profile.js';
 class App extends React.Component {
 
   state = {
-    extAPIArticles: []
+    extAPIArticles: [],
   }
 
   render() {
@@ -23,8 +23,12 @@ class App extends React.Component {
             render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
         </Switch>
         <div>
-          about, terms of use, privacy, contact
+          <span>About</span>
+          <span>Terms of Use</span>
+          <span>Privacy</span>
+          <span>Contact</span>
         </div>
+        Powered by <a href="https://newsapi.org" target="blank">News A P I</a>
       </div>
     );
   }
