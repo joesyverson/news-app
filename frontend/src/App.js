@@ -6,16 +6,38 @@ import Profile from './Profile.js';
 
 class App extends React.Component {
 
+  state = {
+    username: "",
+    extAPIArticles: []
+  }
+
+  renderWhichOptions = () => {
+    if(this.state.username) {
+      return "profile, invite a friend"
+    } else {
+      return "login, signup"
+    }
+  }
+
   render() {
     return (
-      <Switch>
-        <Route
-          path="/profile"
-          render={(routerProps) => <Profile {...routerProps}/>}/>
-        <Route
-          path="/"
-          render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
-      </Switch>
+      <div>
+        <h1>app-title</h1>
+        <div>
+          {this.renderWhichOptions()}
+        </div>
+        <Switch>
+          <Route
+            path="/profile"
+            render={(routerProps) => <Profile {...routerProps}/>}/>
+          <Route
+            path="/"
+            render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
+        </Switch>
+        <div>
+          about, terms of use, privacy, contact
+        </div>
+      </div>
     );
   }
 
