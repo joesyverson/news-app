@@ -7,10 +7,7 @@ import Profile from './Profile.js';
 class App extends React.Component {
 
   state = {
-    extAPIArticles: [],
-    userData: {
-      followees: []
-    }
+    extAPIArticles: []
   }
 
   componentDidMount() {
@@ -35,7 +32,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} data={this.state.userData}/>}/>
+            render={(routerProps) => <Profile {...routerProps} {...this.state.userData}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
