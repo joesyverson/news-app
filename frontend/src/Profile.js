@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import FriendCard from './FriendCard.js';
+
 class Profile extends React.Component {
 
   renderWhichOptions = () => {
@@ -14,17 +16,39 @@ class Profile extends React.Component {
     }
   }
 
+  renderFriendCards = () => {
+    // debugger
+      return this.props.data.followees.map((followee) => {
+        return <FriendCard data={followee} key={followee.id} />
+      })
+  }
 
-  render(){
-    console.log(this.props.data);
-    return (
-      <div>
-        {this.renderWhichOptions()}
-        <h3>{this.props.data.name}</h3>
-        <p>Age: {this.props.data.age}</p>
-        <p>Location: {this.props.data.city}</p>
-      </div>
-    );
+  renderUserData = () => {
+    // console.log(this.props);
+    // debugger
+    if(!localStorage.token) {
+      this.props.history.push('/')
+      return <div></div>
+    } else {
+      return(
+        <div>
+          {this.renderWhichOptions()}
+          <h3>{this.props.data.name}</h3>
+          <p>Age: {this.props.data.age}</p>
+          <p>Location: {this.props.data.city}</p>
+          <div>
+            [articles]
+          </div>
+          <div>
+            {this.renderFriendCards()}
+          </div>
+        </div>
+      )
+    }
+  }
+
+  render() {
+    return this.renderUserData()
   }
 }
 

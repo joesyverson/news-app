@@ -17,11 +17,11 @@ class ArticleContainer extends React.Component {
     return req
   }
 
-  componentDidMount() {
-    fetch(this.request())
-    .then(r => r.json())
-    .then(json => this.setState({articles: json.articles}))
-  }
+  // componentDidMount() {
+  //   fetch(this.request())
+  //   .then(r => r.json())
+  //   .then(json => this.setState({articles: json.articles}))
+  // }
 
   renderWhichOptions = () => {
     // debugger

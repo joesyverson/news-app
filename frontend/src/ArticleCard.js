@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ArticleCard = (props) => {
-  console.log(props.data);
+  // console.log(props.data);
   return(
     <div>
       <p>{props.data.publishedAt.slice(0,10)}</p>

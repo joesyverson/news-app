@@ -1,9 +1,11 @@
 import React from 'react';
 
-const FriendCard = () => {
+const FriendCard = (props) => {
+  console.log(props);
   return(
     <div>
-      [friend]
+      <h4>Friends</h4>
+      {props.data.name}
     </div>
   )
 }

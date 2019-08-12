@@ -8,7 +8,9 @@ class App extends React.Component {
 
   state = {
     extAPIArticles: [],
-    userData: {}
+    userData: {
+      followees: []
+    }
   }
 
   componentDidMount() {
