@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  # validates :title, :author, :description, :published_at, :src, :url, :url_to_image, presence: true
+
   has_many :tags
 
   has_many :user_articles

@@ -20,7 +20,7 @@ user02 = User.create(name: "joe", location_id: location02.id, password: "special
 
 # user01.followers << user02
 #
-# article01 = Article.create(title: "Hello World", author: "Josh", description: "Test", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+# article01 = Article.create(title: "Hello World", author: "Josh", description: "Test", src: "seeds.rb", url: "https://guides.rubyonrails.org", published_at:"01-01-2001")
 # article02 = Article.create(title: "Goodbye World", author: "Otha", description: "Testo", src: "seeds.rb", url: "https://guides.rubyonrails.org")
 # article03 = Article.create(title: "Hello God", author: "Danielle", description: "Testing", src: "seeds.rb", url: "https://guides.rubyonrails.org")
 #

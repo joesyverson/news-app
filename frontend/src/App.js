@@ -10,7 +10,7 @@ class App extends React.Component {
     extAPIArticles: []
   }
 
-  reset = () => {
+  fetchGetProfile = () => {
     if (localStorage.token) {
       fetch('http://localhost:3000/users/profile', {
         headers: {
@@ -18,14 +18,35 @@ class App extends React.Component {
         }
       })
       .then(res => res.json())
-      .then(profileData => {
-        this.setState({userData: profileData})
+      .then(json => {
+        this.setState({userData: json}, console.log(this.state.userData))
       })
     }
+    console.log(this.state.userData);
+  }
+
+  saveArticle = (article) => {
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.token
+      },
+      body: JSON.stringify(article)
+    }
+    // debugger
+    fetch('http://localhost:3000/articles/create-and-save', config)
+    .then((res) => res.json())
+    .then((json) => this.fetchGetProfile() )
+  }
+
+  deleteArticle = () => {
+    debugger
   }
 
   componentDidMount() {
-    this.reset()
+    // debugger
+    this.fetchGetProfile()
   }
 
   render() {
@@ -35,10 +56,10 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} {...this.state.userData}/>}/>
+            render={(routerProps) => <Profile {...routerProps} {...this.state.userData} handleClick={this.deleteArticle}/>}/>
           <Route
             path="/"
-            render={(routerProps) => <ArticleContainer {...routerProps} reset={this.reset}/>}/>
+            render={(routerProps) => <ArticleContainer {...routerProps} handleClick={this.saveArticle}/>}/>
         </Switch>
         <div>
           <span>About</span>

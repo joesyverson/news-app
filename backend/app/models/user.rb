@@ -22,7 +22,6 @@ class User < ApplicationRecord
   has_many :followers, through: :following_users
 
   def city
-    # debugger
     location.city
   end
 end
