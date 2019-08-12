@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def profile
+    # debugger
     render json: cur_user, include: "**"
   end
 

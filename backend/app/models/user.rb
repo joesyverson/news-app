@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  
+
   validates :name, :password, :age, :email, :location_id, presence: true
   validates :name, :email, uniqueness: true
 
@@ -20,4 +20,9 @@ class User < ApplicationRecord
 
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
   has_many :followers, through: :following_users
+
+  def city
+    # debugger
+    location.city
+  end
 end

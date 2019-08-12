@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   patch '/users/profile/edit', to: 'users#update' #
   delete '/users/delete', to: 'users#destroy' #
 
-  get '/users/:id', to: 'users#show'
+  get '/users/:name', to: 'users#show'
 
   # get '/users/articles/saved', to: 'users#show_saved_articles'
   # get '/users/articles/mentioned', to: 'users#show_saved_articles'

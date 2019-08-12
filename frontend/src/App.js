@@ -8,6 +8,22 @@ class App extends React.Component {
 
   state = {
     extAPIArticles: [],
+    userData: {}
+  }
+
+  componentDidMount() {
+    // debugger
+    if (localStorage.token) {
+      fetch('http://localhost:3000/users/profile', {
+        headers: {
+          Authorization: localStorage.token
+        }
+      })
+      .then(res => res.json())
+      .then(profileData => {
+        this.setState({userData: profileData})
+      })
+    }
   }
 
   render() {
@@ -17,7 +33,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps}/>}/>
+            render={(routerProps) => <Profile {...routerProps} data={this.state.userData}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
