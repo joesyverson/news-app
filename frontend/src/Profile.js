@@ -45,13 +45,15 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <h3>{this.props.name}</h3>
+          <h3>@{this.props.name}</h3>
           <p>Age: {this.props.age}</p>
           <p>Location: {this.props.city}</p>
           <div>
+            <h4>Articles</h4>
             {this.renderSavedArticles()}
           </div>
           <div>
+            <h4>Friends</h4>
             {this.renderFriendCards()}
           </div>
         </div>

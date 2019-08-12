@@ -2,3 +2,12 @@
   padding: 0.5vw;
   font-family: monospace;
 }
+
+img {
+  height: 6vw;
+  width: 6vw;
+}
+
+/* hr { */
+  /* padding: none; */
+/* } */

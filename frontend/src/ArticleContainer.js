@@ -17,11 +17,11 @@ class ArticleContainer extends React.Component {
     return req
   }
 
-  // componentDidMount() {
-  //   fetch(this.request())
-  //   .then(r => r.json())
-  //   .then(json => this.setState({articles: json.articles}))
-  // }
+  componentDidMount() {
+    fetch(this.request())
+    .then(r => r.json())
+    .then(json => this.setState({articles: json.articles}))
+  }
 
   renderWhichOptions = () => {
     // debugger
@@ -32,7 +32,7 @@ class ArticleContainer extends React.Component {
           <Link to="/" onClick={() => localStorage.clear()}>Signout</Link>
         </div>
       );
-      } else {
+    } else {
         return(
           <div>
             <Login {...this.props} />
@@ -42,7 +42,7 @@ class ArticleContainer extends React.Component {
     }
   }
 
-  formatArticleCards = () => this.state.articles.map((article, idx) => <ArticleCard data={article} key={idx}/>)
+  formatArticleCards = () => this.state.articles.map((article, idx) => <ArticleCard data={article} key={idx} reset={this.props.reset}/>)
 
   render(){
     return (

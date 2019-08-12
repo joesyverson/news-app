@@ -10,8 +10,7 @@ class App extends React.Component {
     extAPIArticles: []
   }
 
-  componentDidMount() {
-    // debugger
+  reset = () => {
     if (localStorage.token) {
       fetch('http://localhost:3000/users/profile', {
         headers: {
@@ -25,6 +24,10 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.reset()
+  }
+
   render() {
     return (
       <div>
@@ -35,7 +38,7 @@ class App extends React.Component {
             render={(routerProps) => <Profile {...routerProps} {...this.state.userData}/>}/>
           <Route
             path="/"
-            render={(routerProps) => <ArticleContainer {...routerProps}/>}/>
+            render={(routerProps) => <ArticleContainer {...routerProps} reset={this.reset}/>}/>
         </Switch>
         <div>
           <span>About</span>

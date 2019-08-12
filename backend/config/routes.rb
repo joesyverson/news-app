@@ -23,12 +23,12 @@ Rails.application.routes.draw do
 
   # articles
 
-  post '/articles', to: 'articles#create'
-  get '/articles/:title', to: 'articles#show'
+  post '/articles/create-and-save', to: 'articles#create_and_save'
+  # post '/articles', to: 'articles#create'
+  # get '/articles/:title', to: 'articles#show'
 
   # user_articles
 
-  post '/user-articles', to: 'user_articles#create'
   delete '/user-articles/:id', to: 'user_articles#destroy'
 
   # comments

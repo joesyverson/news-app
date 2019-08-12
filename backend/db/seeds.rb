@@ -18,18 +18,18 @@ h_p = Category.create(name:"Politics and History")
 user01 = User.create(name: "tom", location_id: location01.id, password: "satan", email: "atom.syvo@gmail.com", age: 32)
 user02 = User.create(name: "joe", location_id: location02.id, password: "special", email: "josephgavinsyverson@gmail.com", age: 29)
 
-user01.followers << user02
-
-article01 = Article.create(title: "Hello World", author: "Josh", description: "Test", src: "seeds.rb", url: "https://guides.rubyonrails.org")
-article02 = Article.create(title: "Goodbye World", author: "Otha", description: "Testo", src: "seeds.rb", url: "https://guides.rubyonrails.org")
-article03 = Article.create(title: "Hello God", author: "Danielle", description: "Testing", src: "seeds.rb", url: "https://guides.rubyonrails.org")
-
-user_article = UserArticle.create(user_id: user01.id, article_id: article01.id)
-comment = Comment.create(content: "good article", user_id: user01.id, article_id: article02.id)
-mention = Mention.create(article_id: article03.id, user_id: user01.id)
-
-
-
-tag01 = Tag.create(category_id: 01, article_id: 01)
-tag02 = Tag.create(category_id: 01, article_id: 01)
-tag03 = Tag.create(category_id: 01, article_id: 01)
+# user01.followers << user02
+#
+# article01 = Article.create(title: "Hello World", author: "Josh", description: "Test", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+# article02 = Article.create(title: "Goodbye World", author: "Otha", description: "Testo", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+# article03 = Article.create(title: "Hello God", author: "Danielle", description: "Testing", src: "seeds.rb", url: "https://guides.rubyonrails.org")
+#
+# user_article = UserArticle.create(user_id: user01.id, article_id: article01.id)
+# comment = Comment.create(content: "good article", user_id: user01.id, article_id: article02.id)
+# mention = Mention.create(article_id: article03.id, user_id: user01.id)
+#
+#
+#
+# tag01 = Tag.create(category_id: 01, article_id: 01)
+# tag02 = Tag.create(category_id: 01, article_id: 01)
+# tag03 = Tag.create(category_id: 01, article_id: 01)

@@ -1,25 +1,25 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authorized
 
-  def create
-    new_article = Article.create(article_params)
-    render json: new_article
-  end
-
-  def show
-    title = params[:title].split("-").join(" ")
-    if Article.find_by(title: title)
-      render json: Article.find_by(title: title), include: "**"
+  def create_and_save
+    # debugger
+    if !Article.find_by(url: article_params[:url])
+      new_article = Article.create(title: article_params[:title], description: article_params[:description], published_at: article_params[:publishedAt], src: article_params[:src], url: article_params[:url], url_to_image: article_params[:urlToImage])
+      # debugger
+      cur_user.articles << new_article
+      render json: new_article
     else
-      render json: false
+      # debugger
+      if !cur_user.articles.include?(Article.find_by(url: article_params[:url]))
+        cur_user.articles << Article.find_by(url: article_params[:url])
+        render json: Article.find_by(url: article_params[:url])
+      end
     end
   end
-
 
   private
 
   def article_params
-    params.permit(:title, :author, :description, :published_at, :src, :url, :url_to_image)
+    params[:data].permit(:title, :author, :description, :publishedAt, :src, :url, :urlToImage)
   end
 
 end
