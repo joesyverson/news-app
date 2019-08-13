@@ -35,7 +35,7 @@ class ArticleContainer extends React.Component {
     } else {
         return(
           <div>
-            <Login {...this.props} />
+            <Login {...this.props} getProfile={this.props.getProfile}/>
             <Signup {...this.props} />
           </div>
         );

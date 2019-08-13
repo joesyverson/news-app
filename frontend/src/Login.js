@@ -24,9 +24,10 @@ class Login extends React.Component {
     .then(res => res.json())
     .then(data =>{
       if (data.token)  {
-        localStorage.token = data.token
-        this.props.history.push('/')
-      }
+          localStorage.token = data.token
+          this.props.getProfile()
+          this.props.history.push('/')
+        }
     })
   }
 

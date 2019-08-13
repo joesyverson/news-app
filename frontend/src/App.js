@@ -73,7 +73,7 @@ class App extends React.Component {
             render={(routerProps) => <Profile {...routerProps} {...this.state.userData} deleteArticle={this.deleteArticle}/>}/>
           <Route
             path="/"
-            render={(routerProps) => <ArticleContainer {...routerProps} handleClick={this.saveArticle}/>}/>
+            render={(routerProps) => <ArticleContainer {...routerProps} handleClick={this.saveArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
         <div>
           <span>About</span>
