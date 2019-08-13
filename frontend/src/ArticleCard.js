@@ -15,23 +15,36 @@ class ArticleCard extends React.Component {
     }
   }
 
-  handleSubmit = () => {
-    console.log(this.state.comment);
-    debugger
+  handleSubmit = (e) => {
+    e.preventDefault()
+    let commentData = {...this.props.data, ...this.state};
+    // debugger
+    let config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.token
+      },
+      body: JSON.stringify(commentData)
+    }
+    fetch('http://localhost:3000/comments', config)
+    .then((res) => res.json())
+    .then((json) => this.props.getProfile())
+    // debugger
   }
 
   handleChange = (e) => {
-    e.preventDefault()
-    console.log(e.target.value)
-    debugger
+    this.setState({[e.target.name]: e.target.value})
+    // console.log(e.target.value)
+    // debugger
   }
 
   renderUserButtons = () => {
     return(
       <div>
         <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
-        <form>
-          <textarea onChange={(e) => this.handleChange(e)}></textarea>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
           <input type="submit" value="COMMENT"/>
         </form>
       </div>
@@ -54,6 +67,4 @@ class ArticleCard extends React.Component {
     )
   }
 }
-
-// <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
 export default ArticleCard;
