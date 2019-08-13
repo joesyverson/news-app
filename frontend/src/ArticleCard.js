@@ -11,6 +11,15 @@ class ArticleCard extends React.Component {
     }
   }
 
+  renderUserButtons = () => {
+    return(
+      <div>
+        <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
+        <button onClick={(e) => this.props.handleClick(this.props.data)}>COMMENT</button>
+      </div>
+    )
+  }
+
 
   render(){
     return(
@@ -20,11 +29,12 @@ class ArticleCard extends React.Component {
       <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
       <p>by {this.props.data.author}</p>
       <p>{this.props.data.description}</p>
-      <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
+      {localStorage.token ? this.renderUserButtons() : null}
       <hr/>
       </div>
     )
   }
 }
 
+// <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
 export default ArticleCard;
