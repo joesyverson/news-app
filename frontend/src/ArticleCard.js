@@ -1,10 +1,13 @@
 import React from 'react';
 
+import Comment from './CommentCard.js'
+
 class ArticleCard extends React.Component {
   // console.log(this.props.data);
 
   state = {
-    comment: ""
+    comment: "",
+    comments: []
   }
 
   renderWhichButton = () => {
@@ -17,7 +20,8 @@ class ArticleCard extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let commentData = {...this.props.data, ...this.state};
+    // debugger
+    let commentData = {...this.props.data, ...{content: this.state.comment}};
     // debugger
     let config = {
       method: 'POST',
@@ -51,6 +55,34 @@ class ArticleCard extends React.Component {
     )
   }
 
+  componentDidMount = () => {
+    fetch(`http://localhost:3000/articles/comments`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.token
+      },
+      body: JSON.stringify(this.props.data)
+    })
+    .then((res) => res.json())
+    .then((json) => this.setState({
+      comment: this.state.comment,
+      comments: json
+    }))
+  }
+
+  renderComments = () => {
+    return this.state.comments.map((comment, idx) => {
+      return <Comment data={comment} key={idx}/>
+    })
+  }
+
+  // helper = () => {
+  //   console.log(this.renderComments())
+  //   debugger
+  // }
+
 
   render(){
     return(
@@ -62,6 +94,9 @@ class ArticleCard extends React.Component {
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
         <h3>Comments</h3>
+        <div>
+          {this.renderComments()}
+        </div>
         <hr/>
       </div>
     )

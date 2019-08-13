@@ -2,16 +2,17 @@ class CommentsController < ApplicationController
   # skip_before_action :authorized
 
   def create
+    # debugger
     if !Article.find_by(url: comment_params[:url])
+      # debugger
       new_article = Article.create(title: comment_params[:title], description: comment_params[:description], published_at: comment_params[:publishedAt], url: comment_params[:url], url_to_image: comment_params[:urlToImage])
-
       comment = Comment.create(user_id: cur_user.id, article_id: new_article.id, content: comment_params[:content])
-      render json: new_article
+      render json: comment
     else
-      if !cur_user.articles.include?(Article.find_by(url: comment_params[:url]))
-        comment = Comment.create(user_id: cur_user.id, article_id: new_article.id, content: comment_params[:content])
-        render json: Article.find_by(url: comment_params[:url])
-      end
+      # debugger
+      article = Article.find_by(url: comment_params[:url])
+        comment = Comment.create(user_id: cur_user.id, article_id: article.id, content: comment_params[:content])
+        render json: comment
     end
   end
 

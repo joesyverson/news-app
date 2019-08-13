@@ -16,10 +16,23 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def renderComments
+    # debugger
+    if Article.find_by(url: comment_params[:url])
+      render json: Article.find_by(url: comment_params[:url]).comments
+    else
+      render json: [{response: false}]
+    end
+  end
+
   private
 
   def article_params
     params.permit(:title, :author, :description, :publishedAt, :url, :urlToImage)
+  end
+
+  def comment_params
+    params.permit(:url)
   end
 
 end

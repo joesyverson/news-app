@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Comment = () => {
+const Comment = (props) => {
+  // debugger
+
   return(
     <div>
-      [comment]
+      {props.data.content}
     </div>
   )
 }

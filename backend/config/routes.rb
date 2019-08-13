@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   # articles
 
+  post '/articles/comments', to: 'articles#renderComments'
   post '/articles/create-and-save', to: 'articles#create_and_save' #
   # post '/articles', to: 'articles#create'
   # get '/articles/:title', to: 'articles#show'
