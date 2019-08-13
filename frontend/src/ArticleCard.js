@@ -3,6 +3,14 @@ import React from 'react';
 class ArticleCard extends React.Component {
   // console.log(this.props.data);
 
+  renderWhichButton = () => {
+    if(this.props.saved) {
+      return "DELETE"
+    } else {
+      return "SAVE"
+    }
+  }
+
 
   render(){
     console.log(this.props);
@@ -13,7 +21,7 @@ class ArticleCard extends React.Component {
       <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
       <p>by {this.props.data.author}</p>
       <p>{this.props.data.description}</p>
-      <button onClick={(e) => this.props.handleClick(this.props.data)}>Save</button>
+      <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
       <hr/>
       </div>
     )

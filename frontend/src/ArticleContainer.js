@@ -42,7 +42,7 @@ class ArticleContainer extends React.Component {
     }
   }
 
-  formatArticleCards = () => this.state.articles.map((article, idx) => <ArticleCard data={article} key={idx} handleClick={this.props.handleClick}/>)
+  formatArticleCards = () => this.state.articles.map((article, idx) => <ArticleCard data={article} key={idx} handleClick={this.props.handleClick} saved={false}/>)
 
   render(){
     return (

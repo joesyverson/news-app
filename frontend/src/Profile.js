@@ -28,7 +28,7 @@ class Profile extends React.Component {
 
   renderSavedArticles = () => {
     if(this.props.articles && this.props.mention_articles && this.props.comment_articles){
-      let userArticles = this.props.articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle}/>)
+      let userArticles = this.props.articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true}/>)
       let mentionArticles = this.props.mention_articles.map((article) => <ArticleCard data={article}/>)
       let commentArticles = this.props.comment_articles.map((article) => <ArticleCard data={article} key={article.id}/>)
       return userArticles.concat(mentionArticles, commentArticles)
