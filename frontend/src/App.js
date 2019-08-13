@@ -19,10 +19,9 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(json => {
-        this.setState({userData: json}, console.log(this.state.userData))
+        this.setState({userData: json})
       })
     }
-    console.log(this.state.userData);
   }
 
   saveArticle = (article) => {
@@ -41,6 +40,7 @@ class App extends React.Component {
   }
 
   deleteArticle = (article) => {
+    // debugger
     fetch(`http://localhost:3000/user-articles/${article.id}`, {
       method: 'DELETE',
       headers: {

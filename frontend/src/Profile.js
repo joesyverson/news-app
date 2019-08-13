@@ -36,8 +36,6 @@ class Profile extends React.Component {
   }
 
   renderUserData = () => {
-    console.log(this.props);
-    // debugger
     if(!localStorage.token) {
       this.props.history.push('/')
       return <div></div>

@@ -3,7 +3,7 @@ class UserArticlesController < ApplicationController
 
   def destroy
     # debugger
-    to_destroy = cur_user.user_articles.find(params[:id])
+    to_destroy = cur_user.user_articles.find_by(article_id: params[:id])
     copy_for_render = to_destroy
     to_destroy.destroy
     render json: copy_for_render

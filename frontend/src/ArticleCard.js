@@ -13,10 +13,9 @@ class ArticleCard extends React.Component {
 
 
   render(){
-    console.log(this.props);
     return(
       <div>
-      <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image}/>
+      <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image} alt={this.props.data.title}/>
       <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) : this.props.data.published_at.slice(0,10)}</p>
       <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
       <p>by {this.props.data.author}</p>
