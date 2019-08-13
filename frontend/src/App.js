@@ -14,7 +14,7 @@ class App extends React.Component {
     if (localStorage.token) {
       fetch('http://localhost:3000/users/profile', {
         headers: {
-          Authorization: localStorage.token
+          'Authorization': localStorage.token
         }
       })
       .then(res => res.json())
@@ -40,9 +40,23 @@ class App extends React.Component {
     .then((json) => this.fetchGetProfile() )
   }
 
-  deleteArticle = () => {
-    debugger
+  deleteArticle = (article) => {
+    fetch(`http://localhost:3000/user-articles/${article.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': localStorage.token
+      }
+    }).then((res) => this.fetchGetProfile())
   }
+
+  // deleteComment = () => {
+  //   debugger
+  // }
+  //
+  // deleteMention = () => {
+  //   debugger
+  // }
+
 
   componentDidMount() {
     // debugger
@@ -56,7 +70,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} {...this.state.userData} handleClick={this.deleteArticle}/>}/>
+            render={(routerProps) => <Profile {...routerProps} {...this.state.userData} deleteArticle={this.deleteArticle}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps} handleClick={this.saveArticle}/>}/>
