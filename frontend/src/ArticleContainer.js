@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login.js';
 import ArticleCard from './ArticleCard.js';
+import Comment from './CommentCard.js';
 
 class ArticleContainer extends React.Component {
 
@@ -42,7 +43,10 @@ class ArticleContainer extends React.Component {
     }
   }
 
-  formatArticleCards = () => this.state.articles.map((article, idx) => <ArticleCard data={article} key={idx} handleClick={this.props.handleClick} saved={false} getProfile={this.props.getProfile}/>)
+  formatArticleCards = () => {
+    console.log(this.props.saved)
+    return this.state.articles.map((article, idx) => <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={false} renderComments={this.renderComments}/>)
+  }
 
   render(){
     return (

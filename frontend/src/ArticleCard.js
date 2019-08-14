@@ -33,7 +33,10 @@ class ArticleCard extends React.Component {
     }
     fetch('http://localhost:3000/comments', config)
     .then((res) => res.json())
-    .then((json) => this.props.getProfile())
+    .then((json) => this.setState({
+      comment: this.state.comment,
+      comments: json
+    }))
     // debugger
   }
 
@@ -56,6 +59,7 @@ class ArticleCard extends React.Component {
   }
 
   componentDidMount = () => {
+    // debugger
     fetch(`http://localhost:3000/articles/comments`, {
       method: "POST",
       headers: {
@@ -67,24 +71,21 @@ class ArticleCard extends React.Component {
     })
     .then((res) => res.json())
     .then((json) => this.setState({
-      comment: this.state.comment,
       comments: json
     }))
   }
 
   renderComments = () => {
     return this.state.comments.map((comment, idx) => {
+      // debugger
       return <Comment data={comment} key={idx}/>
     })
   }
 
-  // helper = () => {
-  //   console.log(this.renderComments())
-  //   debugger
-  // }
-
 
   render(){
+    // debugger
+    console.log(this.props.saved)
     return(
       <div>
         <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image}   alt={this.props.data.title}/>
@@ -95,7 +96,7 @@ class ArticleCard extends React.Component {
         {localStorage.token ? this.renderUserButtons() : null}
         <h3>Comments</h3>
         <div>
-          {this.renderComments()}
+        {this.renderComments()}
         </div>
         <hr/>
       </div>

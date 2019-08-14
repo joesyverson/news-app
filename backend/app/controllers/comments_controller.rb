@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
       # debugger
       new_article = Article.create(title: comment_params[:title], description: comment_params[:description], published_at: comment_params[:publishedAt], url: comment_params[:url], url_to_image: comment_params[:urlToImage])
       comment = Comment.create(user_id: cur_user.id, article_id: new_article.id, content: comment_params[:content])
-      render json: comment
+      render json: Article.find(new_article.id).comments
     else
       # debugger
       article = Article.find_by(url: comment_params[:url])
         comment = Comment.create(user_id: cur_user.id, article_id: article.id, content: comment_params[:content])
-        render json: comment
+        render json: Article.find(article.id).comments
     end
   end
 
