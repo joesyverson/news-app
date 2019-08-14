@@ -76,10 +76,12 @@ class ArticleCard extends React.Component {
   }
 
   renderComments = () => {
-    return this.state.comments.map((comment, idx) => {
-      // debugger
-      return <Comment data={comment} key={idx}/>
-    })
+    if(localStorage.token){
+      return this.state.comments.map((comment, idx) => {
+        // debugger
+        return <Comment data={comment} key={idx}/>
+      })
+    }
   }
 
 
