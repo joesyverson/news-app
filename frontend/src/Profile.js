@@ -33,7 +33,7 @@ class Profile extends React.Component {
 
       let mentionArticles = this.props.mention_articles.map((article) => <ArticleCard data={article} saved={true} key={"mentioned" + article.id}/>)
 
-      let commentArticles = this.props.comment_articles.map((article, idx) => <ArticleCard data={article} key={"commented" + idx} saved={true}/>)
+      let commentArticles = this.props.uniq_comment_articles.map((article, idx) => <ArticleCard data={article} key={"commented" + idx} saved={true}/>)
       let allSavedArticles = [...userArticles.concat(mentionArticles, commentArticles)]
       // console.log(allSavedArticles);
       // debugger

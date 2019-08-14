@@ -25,8 +25,8 @@ class User < ApplicationRecord
     location.city
   end
 
-  # def uniq_comment_articles
-  #   # debugger
-  #   comment_articles.uniq
-  # end
+  def uniq_comment_articles
+    # debugger
+    comment_articles.uniq
+  end
 end
