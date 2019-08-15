@@ -38,9 +38,10 @@ class ArticleCard extends React.Component {
     .then((json) => this.setState({
       comment: "",
       comments: json,
-      jsxComments: [],
+      jsxComments: this.state.jsxComments,
       displayComments: this.state.displayComments
     }))
+    .then(() => this.fetchGetComments())
     // debugger
   }
 
@@ -48,6 +49,19 @@ class ArticleCard extends React.Component {
     this.setState({[e.target.name]: e.target.value})
     // console.log(e.target.value)
     // debugger
+  }
+
+  handleClick = () => {
+    if(!this.state.displayComments) {
+      this.fetchGetComments()
+    } else {
+      this.setState({
+        comment: this.state.commment,
+        comments: this.state.comments,
+        jsxComments: [],
+        displayComments: false
+      })
+    }
   }
 
   renderUserButtons = () => {
@@ -64,7 +78,7 @@ class ArticleCard extends React.Component {
 
   fetchGetComments = () => {
     // debugger
-    if(!this.state.displayComments){
+
     fetch(`http://localhost:3000/articles/comments`, {
       method: "POST",
       headers: {
@@ -81,14 +95,6 @@ class ArticleCard extends React.Component {
       jsxComments: this.state.jsxComments,
       displayComments: true
     })).then(() => this.formatComments())
-  } else {
-    this.setState({
-      comment: this.state.commment,
-      comments: this.state.comments,
-      jsxComments: [],
-      displayComments: false
-    })
-    }
   }
 
   formatComments = () => {
@@ -112,7 +118,7 @@ class ArticleCard extends React.Component {
         <p>by {this.props.data.author}</p>
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
-        <div onClick={this.fetchGetComments}>
+        <div onClick={this.handleClick}>
           <h3>Comments</h3>
           {this.state.jsxComments}
         </div>
