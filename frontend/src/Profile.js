@@ -6,6 +6,24 @@ import ArticleCard from './ArticleCard.js';
 
 class Profile extends React.Component {
 
+  state = {
+    userData: []
+  }
+
+  componentDidMount = () => {
+    if (localStorage.token) {
+      fetch('http://localhost:3000/users/profile', {
+        headers: {
+          'Authorization': localStorage.token
+        }
+      })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({userData: json})
+      })
+    }
+  }
+
   renderWhichOptions = () => {
     if(localStorage.token) {
       return(
@@ -26,18 +44,21 @@ class Profile extends React.Component {
   //   }
   // }
 
-  renderSavedArticles = () => {
+  renderArticles = () => {
+    console.log(this.props);
     // debugger
-    if(this.props.articles && this.props.mention_articles && this.props.comment_articles){
-      let userArticles = this.props.articles.map((article) => <ArticleCard data={article} key={"saved-" + article.id} handleClick={this.props.deleteArticle} saved={true}/>)
-
-      let mentionArticles = this.props.mention_articles.map((article) => <ArticleCard data={article} saved={true} key={"mentioned" + article.id}/>)
-
-      let commentArticles = this.props.uniq_comment_articles.map((article, idx) => <ArticleCard data={article} key={"commented" + idx} saved={true}/>)
-      let allSavedArticles = [...userArticles.concat(mentionArticles, commentArticles)]
-      // console.log(allSavedArticles);
-      // debugger
-      return allSavedArticles
+    // if(this.props.articles && this.props.mention_articles && this.props.comment_articles){
+    //   let userArticles = this.props.articles.map((article) => <ArticleCard data={article} key={"saved-" + article.id} handleClick={this.props.deleteArticle} saved={true}/>)
+    //
+    //   let mentionArticles = this.props.mention_articles.map((article) => <ArticleCard data={article} saved={true} key={"mentioned" + article.id}/>)
+    //
+    //   let commentArticles = this.props.uniq_comment_articles.map((article, idx) => <ArticleCard data={article} key={"commented" + idx} saved={true}/>)
+    //   let allSavedArticles = [...userArticles.concat(mentionArticles, commentArticles)]
+    //
+    //   return allSavedArticles
+    // }
+    if(this.props.all_articles) {
+      return this.props.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true}/>)
     }
   }
 
@@ -49,12 +70,12 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <h3>@{this.props.name}</h3>
-          <p>Age: {this.props.age}</p>
-          <p>Location: {this.props.city}</p>
+          <h3>@{this.state.userData.name}</h3>
+          <p>Age: {this.state.userData.age}</p>
+          <p>Location: {this.state.userData.city}</p>
           <div>
             <h4>Articles</h4>
-            {this.renderSavedArticles()}
+            {this.renderArticles()}
           </div>
         </div>
       )

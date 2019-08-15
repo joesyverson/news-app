@@ -29,4 +29,10 @@ class User < ApplicationRecord
     # debugger
     comment_articles.uniq
   end
+
+  def all_articles
+    all_articles = comment_articles + articles + mention_articles
+    all_articles.uniq.sort_by {|article| article.updated_at}.reverse
+    # debugger
+  end
 end
