@@ -36,10 +36,10 @@ class ArticleCard extends React.Component {
     fetch('http://localhost:3000/comments', config)
     .then((res) => res.json())
     .then((json) => this.setState({
-      comment: this.state.comment,
+      comment: "",
       comments: json,
       jsxComments: [],
-      displayComments: false
+      displayComments: this.state.displayComments
     }))
     // debugger
   }
