@@ -44,7 +44,7 @@ class ArticleContainer extends React.Component {
   }
 
   formatArticleCards = () => {
-    console.log(this.props.saved)
+    // console.log(this.props.saved)
     return this.state.articles.map((article, idx) => <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={false} renderComments={this.renderComments}/>)
   }
 

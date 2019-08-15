@@ -5,7 +5,7 @@ import ArticleContainer from './ArticleContainer.js';
 import Profile from './Profile.js';
 
 class App extends React.Component {
-  
+
 
   state = {
     extAPIArticles: []
@@ -20,7 +20,10 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(json => {
-        this.setState({userData: json})
+        this.setState({
+          extAPIArticles: this.state.extAPIArticles,
+          userData: json
+        })
       })
     }
   }
@@ -59,9 +62,25 @@ class App extends React.Component {
   // }
 
 
+  request = () => {
+    var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=d1a63a25170149fcb27fe09d94da4de9';
+    let req = new Request(url);
+    return req
+  }
+
+  fetchGetArticles() {
+    fetch(this.request())
+    .then(r => r.json())
+    .then(json => this.setState({
+      extAPIArticles: json.articles,
+      userData: this.state.userData
+    }))
+  }
+
   componentDidMount() {
     // debugger
     this.fetchGetProfile()
+    this.fetchGetArticles()
   }
 
   render() {
@@ -74,7 +93,7 @@ class App extends React.Component {
             render={(routerProps) => <Profile {...routerProps} {...this.state.userData} deleteArticle={this.deleteArticle}/>}/>
           <Route
             path="/"
-            render={(routerProps) => <ArticleContainer {...routerProps} handleClick={this.saveArticle} getProfile={this.fetchGetProfile}/>}/>
+            render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
         <div>
           <span>About</span>
