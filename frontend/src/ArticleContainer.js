@@ -12,18 +12,6 @@ class ArticleContainer extends React.Component {
     articles: []
   }
 
-  request = () => {
-    var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=d1a63a25170149fcb27fe09d94da4de9';
-    let req = new Request(url);
-    return req
-  }
-
-  componentDidMount() {
-    fetch(this.request())
-    .then(r => r.json())
-    .then(json => this.setState({articles: json.articles}))
-  }
-
   renderWhichOptions = () => {
     // debugger
     if(localStorage.token) {
@@ -43,9 +31,24 @@ class ArticleContainer extends React.Component {
     }
   }
 
+  userArticleURLs = (aPIURL) => {
+    let uRLs = this.props.userData.all_articles.map((article) => {
+      return article.url
+    })
+    return uRLs.includes(aPIURL)
+  }
+
   formatArticleCards = () => {
     // console.log(this.props.saved)
-    return this.state.articles.map((article, idx) => <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={false} renderComments={this.renderComments}/>)
+    return this.props.extAPIArticles.map((article, idx) => {
+      console.log(this.props);
+      // debugger
+      let saved = this.userArticleURLs(article.url)
+      // debugger
+      return (
+        <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
+      )
+    })
   }
 
   render(){
