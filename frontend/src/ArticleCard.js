@@ -7,7 +7,9 @@ class ArticleCard extends React.Component {
 
   state = {
     comment: "",
-    comments: []
+    comments: [],
+    jsxComments: [],
+    displayComments: false
   }
 
   renderWhichButton = () => {
@@ -75,14 +77,29 @@ class ArticleCard extends React.Component {
     }))
   }
 
-  renderComments = () => {
-    if(localStorage.token){
-      return this.state.comments.map((comment, idx) => {
-        // debugger
-        return <Comment data={comment} key={idx}/>
+  formatComments = () => {
+    let jsxComments = []
+    if(!this.state.displayComments){
+      jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx}/>)
+      this.setState({
+        comment: this.state.comment,
+        comments: this.state.comments,
+        jsxComments: jsxComments,
+        displayComments: true
       })
-    }
+    } else {
+        this.setState(
+          {
+            comment: this.state.comment,
+            comments: this.state.comments,
+            jsxComments: [],
+            displayComments: false
+          }
+        );
+      }
   }
+
+  renderComments = () => this.formatComments()
 
 
   render(){
@@ -96,9 +113,9 @@ class ArticleCard extends React.Component {
         <p>by {this.props.data.author}</p>
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
-        <h3>Comments</h3>
-        <div>
-        {this.renderComments()}
+        <div onClick={this.renderComments}>
+          <h3>Comments</h3>
+          {this.state.jsxComments}
         </div>
         <hr/>
       </div>
