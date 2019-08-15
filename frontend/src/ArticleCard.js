@@ -37,7 +37,9 @@ class ArticleCard extends React.Component {
     .then((res) => res.json())
     .then((json) => this.setState({
       comment: this.state.comment,
-      comments: json
+      comments: json,
+      jsxComments: [],
+      displayComments: false
     }))
     // debugger
   }
@@ -60,8 +62,9 @@ class ArticleCard extends React.Component {
     )
   }
 
-  componentDidMount = () => {
+  fetchGetComments = () => {
     // debugger
+    if(!this.state.displayComments){
     fetch(`http://localhost:3000/articles/comments`, {
       method: "POST",
       headers: {
@@ -73,38 +76,34 @@ class ArticleCard extends React.Component {
     })
     .then((res) => res.json())
     .then((json) => this.setState({
-      comments: json
-    }))
+      comment: this.state.commment,
+      comments: json,
+      jsxComments: this.state.jsxComments,
+      displayComments: true
+    })).then(() => this.formatComments())
+  } else {
+    this.setState({
+      comment: this.state.commment,
+      comments: this.state.comments,
+      jsxComments: [],
+      displayComments: false
+    })
+    }
   }
 
   formatComments = () => {
+    // debugger
     let jsxComments = []
-    if(!this.state.displayComments){
-      jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx}/>)
-      this.setState({
-        comment: this.state.comment,
-        comments: this.state.comments,
-        jsxComments: jsxComments,
-        displayComments: true
-      })
-    } else {
-        this.setState(
-          {
-            comment: this.state.comment,
-            comments: this.state.comments,
-            jsxComments: [],
-            displayComments: false
-          }
-        );
-      }
+    jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx}/>)
+    this.setState({
+      comment: this.state.comment,
+      comments: this.state.comments,
+      jsxComments: jsxComments,
+      displayComments: true
+    })
   }
 
-  renderComments = () => this.formatComments()
-
-
   render(){
-    // debugger
-    console.log(this.props.saved)
     return(
       <div>
         <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image}   alt={this.props.data.title}/>
@@ -113,7 +112,7 @@ class ArticleCard extends React.Component {
         <p>by {this.props.data.author}</p>
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
-        <div onClick={this.renderComments}>
+        <div onClick={this.fetchGetComments}>
           <h3>Comments</h3>
           {this.state.jsxComments}
         </div>
