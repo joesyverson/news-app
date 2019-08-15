@@ -25,10 +25,10 @@ class User < ApplicationRecord
     location.city
   end
 
-  def uniq_comment_articles
-    # debugger
-    comment_articles.uniq
-  end
+  # def uniq_comment_articles
+  #   # debugger
+  #   comment_articles.uniq
+  # end
 
   def all_articles
     all_articles = comment_articles + articles + mention_articles

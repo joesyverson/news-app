@@ -119,7 +119,7 @@ class ArticleCard extends React.Component {
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
         <div onClick={this.handleClick}>
-          <h3>Comments</h3>
+          <h3>{localStorage.token? "Comments" : null}</h3>
           {this.state.jsxComments}
         </div>
         <hr/>
