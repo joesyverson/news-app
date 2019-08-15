@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   def renderComments
     # debugger
     if Article.find_by(url: comment_params[:url])
-      render json: Article.find_by(url: comment_params[:url]).comments
+      render json: Article.find_by(url: comment_params[:url]).comments.sort_by {|comment| comment.updated_at}.reverse
     else
       render json: [{response: false}]
     end

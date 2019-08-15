@@ -1,11 +1,15 @@
 import React from 'react';
 
 const Comment = (props) => {
-  // debugger
+  console.log(props);
+
+  function displayComment() {
+    return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at}]`
+  }
 
   return(
     <div>
-      {props.data.content}
+      {props.data ? displayComment() : null}
     </div>
   )
 }

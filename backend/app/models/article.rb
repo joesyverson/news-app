@@ -11,4 +11,8 @@ class Article < ApplicationRecord
 
   has_many :comments
   has_many :comment_users, through: :comments, source: :user
+
+  # def comments_by_time
+  #   comments.sort_by {|comment| comment.updated_at}.reverse
+  # end
 end
