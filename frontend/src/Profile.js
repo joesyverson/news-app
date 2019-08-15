@@ -17,14 +17,14 @@ class Profile extends React.Component {
     }
   }
 
-  renderFriendCards = () => {
-    // debugger
-    if(this.props.followees) {
-      return this.props.followees.map((followee) => {
-        return <FriendCard data={followee} key={followee.id} />
-      })
-    }
-  }
+  // renderFriendCards = () => {
+  //   // debugger
+  //   if(this.props.followees) {
+  //     return this.props.followees.map((followee) => {
+  //       return <FriendCard data={followee} key={followee.id} />
+  //     })
+  //   }
+  // }
 
   renderSavedArticles = () => {
     // debugger
@@ -56,14 +56,14 @@ class Profile extends React.Component {
             <h4>Articles</h4>
             {this.renderSavedArticles()}
           </div>
-          <div>
-            <h4>Friends</h4>
-            {this.renderFriendCards()}
-          </div>
         </div>
       )
     }
   }
+  // <div>
+  // <h4>Friends</h4>
+  // {this.renderFriendCards()}
+  // </div>
 
   render() {
     return this.renderUserData()
