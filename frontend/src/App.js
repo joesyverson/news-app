@@ -103,7 +103,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>APP TITLE</h1>
+        <h1>TOP TEN</h1>
         <Switch>
           <Route
             path="/profile"

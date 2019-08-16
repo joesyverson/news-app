@@ -4,7 +4,8 @@ class Login extends React.Component {
 
   state = {
     name: "",
-    password: ""
+    password: "",
+    showForm: false
   }
 
   handleChange = (e) => {
@@ -31,25 +32,31 @@ class Login extends React.Component {
     })
   }
 
+  renderForm = () => {
+    return(
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <input
+      type="text"
+      name="name"
+      placeholder="username"
+      value={this.state.name}
+      onChange={(e) => this.handleChange(e)}/>
+      <input
+      type="password"
+      name="password"
+      placeholder="password"
+      value={this.state.password}
+      onChange={(e) => this.handleChange(e)}/>
+      <input type="submit"/>
+      </form>
+    )
+  }
+
   render() {
     return(
-      <div>
+      <div onClick={() => this.setState({showForm: !this.state.showForm})}>
         Login
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <input
-            type="text"
-            name="name"
-            placeholder="username"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e)}/>
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={this.state.password}
-            onChange={(e) => this.handleChange(e)}/>
-          <input type="submit"/>
-        </form>
+        {this.state.showForm ? this.renderForm() : null}
       </div>
     );
   }

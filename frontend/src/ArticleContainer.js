@@ -32,10 +32,12 @@ class ArticleContainer extends React.Component {
   }
 
   userArticleURLs = (aPIURL) => {
-    let uRLs = this.props.userData.all_articles.map((article) => {
-      return article.url
-    })
-    return uRLs.includes(aPIURL)
+    if(localStorage.token) {
+      let uRLs = this.props.userData.all_articles.map((article) => {
+        return article.url
+      })
+      return uRLs.includes(aPIURL)
+    }
   }
 
   formatArticleCards = () => {
