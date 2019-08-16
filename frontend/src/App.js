@@ -28,6 +28,23 @@ class App extends React.Component {
     }
   }
 
+  userArticleURLs = () => {
+    // console.log(this.state.userData.all_articles);
+    let articles = this.state.userData.all_articles.map((article) => article.url)
+    return articles
+  }
+
+  saveOrDeleteArticle = (article) => {
+    // debugger
+    if(this.userArticleURLs().includes(article.url)) {
+      // debugger
+      this.deleteArticle(this.state.userData.all_articles.find((userArticle) => userArticle.url === article.url))
+    } else {
+      // debugger
+      this.saveArticle(article)
+    }
+  }
+
   saveArticle = (article) => {
     let config = {
       method: 'POST',
@@ -93,7 +110,7 @@ class App extends React.Component {
             render={(routerProps) => <Profile {...routerProps} {...this.state.userData} deleteArticle={this.deleteArticle}/>}/>
           <Route
             path="/"
-            render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveArticle} getProfile={this.fetchGetProfile}/>}/>
+            render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
         <div>
           <span>About</span>
