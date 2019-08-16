@@ -51,23 +51,34 @@ class ArticleCard extends React.Component {
     // debugger
   }
 
-  handleClick = () => {
-    if(!this.state.displayComments) {
-      this.fetchGetComments()
-    } else {
-      this.setState({
-        comment: this.state.commment,
-        comments: this.state.comments,
-        jsxComments: [],
-        displayComments: false
-      })
+  handleClick = (e, data) => {
+    // debugger
+    if(e.target.name === "delete-comment"){
+      // debugger
+      fetch(`http://localhost:3000/comments/${data.id}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: localStorage.token
+          }
+      }).then((json) => this.fetchGetComments())
+    } else if(e.target.dataset.name === 'container') {
+        if(!this.state.displayComments) {
+          this.fetchGetComments()
+        } else {
+          this.setState({
+            comment: this.state.commment,
+            comments: this.state.comments,
+            jsxComments: [],
+            displayComments: false
+          })
+        }
     }
   }
 
   renderUserButtons = () => {
     return(
       <div>
-        <button onClick={(e) => this.props.handleClick(this.props.data)}>{this.renderWhichButton()}</button>
+        <button onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
           <input type="submit" value="COMMENT"/>
@@ -77,8 +88,6 @@ class ArticleCard extends React.Component {
   }
 
   fetchGetComments = () => {
-    // debugger
-
     fetch(`http://localhost:3000/articles/comments`, {
       method: "POST",
       headers: {
@@ -100,7 +109,7 @@ class ArticleCard extends React.Component {
   formatComments = () => {
     // debugger
     let jsxComments = []
-    jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx}/>)
+    jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx} handleClick={this.handleClick}/>)
     this.setState({
       comment: this.state.comment,
       comments: this.state.comments,
@@ -118,8 +127,8 @@ class ArticleCard extends React.Component {
         <p>by {this.props.data.author}</p>
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
-        <div onClick={this.handleClick}>
-          <h3>{localStorage.token? "Comments" : null}</h3>
+        <div>
+          <h3 data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</h3>
           {this.state.jsxComments}
         </div>
         <hr/>

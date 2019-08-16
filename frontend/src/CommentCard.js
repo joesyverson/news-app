@@ -10,6 +10,7 @@ const Comment = (props) => {
   return(
     <div>
       {props.data ? displayComment() : null}
+      {props.data ? <button name="delete-comment" value={props.data.id} onClick={(e) => props.handleClick(e, props.data)}>DELETE</button> : null}
     </div>
   )
 }
