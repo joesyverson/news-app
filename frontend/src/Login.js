@@ -54,8 +54,8 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div onClick={() => this.setState({showForm: !this.state.showForm})}>
-        Login
+      <div>
+        <span onClick={() => this.setState({showForm: !this.state.showForm})}>Login</span>
         {this.state.showForm ? this.renderForm() : null}
       </div>
     );
