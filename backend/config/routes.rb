@@ -13,11 +13,6 @@ Rails.application.routes.draw do
   patch '/users/profile/edit', to: 'users#update'
   delete '/users/delete', to: 'users#destroy'
 
-
-  # get '/users/articles/saved', to: 'users#show_saved_articles'
-  # get '/users/articles/mentioned', to: 'users#show_saved_articles'
-  # get '/users/articles/commented', to: 'users#show_saved_articles'
-
   post '/follow/:id', to: 'users#follow'
   delete '/unfollow/:id', to: 'users#unfollow'
 
@@ -25,8 +20,6 @@ Rails.application.routes.draw do
 
   post '/articles/comments', to: 'articles#renderComments'
   post '/articles/create-and-save', to: 'articles#create_and_save' #
-  # post '/articles', to: 'articles#create'
-  # get '/articles/:title', to: 'articles#show'
 
   # user_articles
 

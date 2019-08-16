@@ -4,9 +4,19 @@ class UserArticlesController < ApplicationController
   def destroy
     # debugger
     to_destroy = cur_user.user_articles.find_by(article_id: params[:id])
-    copy_for_render = to_destroy
-    to_destroy.destroy
-    render json: copy_for_render
+    articles_by_comment = cur_user.comments.where(article_id: params[:id])
+    # debugger
+    if cur_user.user_articles.find_by(article_id: params[:id]) || cur_user.comments.where(article_id: 9)
+      # debugger
+      to_destroy.destroy
+
+      # debugger
+      articles_by_comment.destroy_all
+      render json: {destroyed: true}
+    else
+      render json: {destroyed: false}
+    end
+    # debugger
   end
 
   private

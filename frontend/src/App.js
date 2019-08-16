@@ -61,7 +61,7 @@ class App extends React.Component {
   }
 
   deleteArticle = (article) => {
-    // debugger
+    debugger
     fetch(`http://localhost:3000/user-articles/${article.id}`, {
       method: 'DELETE',
       headers: {
