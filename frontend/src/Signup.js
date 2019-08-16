@@ -7,7 +7,7 @@ class Signup extends React.Component {
     name: "",
     password: "",
     age: 0,
-    location_id: 0,
+    location: "",
     email: "",
     showForm: false
   }
@@ -17,22 +17,29 @@ class Signup extends React.Component {
   }
 
   handleSubmit = (e) => {
+
     e.preventDefault()
-    fetch('http://localhost:3000/users/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json',
-        'Accept':'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-    .then(res => res.json())
-    .then(data =>{
-      if (data.token)  {
-        localStorage.token = data.token
-        this.props.history.push('/')
-      }
-    })
+    if(this.state.name && this.state.password && this.state.location && this.state.email && this.state.age) {
+      fetch('http://localhost:3000/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body: JSON.stringify(this.state)
+      })
+      .then(res => res.json())
+      .then(data =>{
+        if (data.token)  {
+          localStorage.token = data.token
+          this.props.showError("")
+          this.props.getProfile()
+          this.props.history.push('/')
+        }
+      })
+    } else {
+      this.props.showError("All fields must be complete in order to register")
+    }
   }
 
   showForm = () => {

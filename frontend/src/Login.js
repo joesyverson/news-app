@@ -26,6 +26,7 @@ class Login extends React.Component {
     .then(json =>{
       if (json.token)  {
           localStorage.token = json.token
+          this.props.showError("")
           this.props.getProfile()
           this.props.history.push('/')
         } else {
