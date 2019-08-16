@@ -119,12 +119,11 @@ class ArticleCard extends React.Component {
   }
 
   render(){
+    console.log(this.props.data);
     return(
       <div>
-        <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image}   alt={this.props.data.title}/>
         <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>
         <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
-        <p>by {this.props.data.author}</p>
         <p>{this.props.data.description}</p>
         {localStorage.token ? this.renderUserButtons() : null}
         <div>
@@ -136,4 +135,7 @@ class ArticleCard extends React.Component {
     )
   }
 }
+// <p> {this.props.data.author ? this.props.data.author : this.props.source.name}</p>
+// <img src={this.props.data.urlToImage ? this.props.data.urlToImage : this.props.data.url_to_image}   alt={this.props.data.title}/>
+
 export default ArticleCard;

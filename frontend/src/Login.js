@@ -23,11 +23,13 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     })
     .then(res => res.json())
-    .then(data =>{
-      if (data.token)  {
-          localStorage.token = data.token
+    .then(json =>{
+      if (json.token)  {
+          localStorage.token = json.token
           this.props.getProfile()
           this.props.history.push('/')
+        } else {
+          this.props.showError("Wrong username or password")
         }
     })
   }

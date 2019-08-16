@@ -9,7 +9,7 @@ import Comment from './CommentCard.js';
 class ArticleContainer extends React.Component {
 
   state = {
-    articles: []
+    errors: ""
   }
 
   renderWhichOptions = () => {
@@ -24,15 +24,16 @@ class ArticleContainer extends React.Component {
     } else {
         return(
           <div>
-            <Login {...this.props} getProfile={this.props.getProfile}/>
-            <Signup {...this.props} />
+            <Login {...this.props} getProfile={this.props.getProfile} showError={this.setErrorToState}/>
+            <Signup {...this.props} showError={this.setErrorToState}/>
           </div>
         );
     }
   }
 
   userArticleURLs = (aPIURL) => {
-    if(localStorage.token) {
+    if(this.props.userData) {
+      // debugger
       let uRLs = this.props.userData.all_articles.map((article) => {
         return article.url
       })
@@ -40,24 +41,32 @@ class ArticleContainer extends React.Component {
     }
   }
 
+  setErrorToState = (error) => {
+    // debugger
+    this.setState({errors: error})
+  }
+
   formatArticleCards = () => {
-    // console.log(this.props.saved)
-    return this.props.extAPIArticles.map((article, idx) => {
-      console.log(this.props);
-      // debugger
-      let saved = this.userArticleURLs(article.url)
-      // debugger
-      return (
-        <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
-      )
-    })
+    if(this.props.extAPIArticles) {
+      return this.props.extAPIArticles.map((article, idx) => {
+        let saved = this.userArticleURLs(article.url)
+        return (
+          <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
+        )
+      })
+    }
   }
 
   render(){
     return (
       <div>
+      <div>
+        {this.state.errors}
+      </div>
+      <div>
         {this.renderWhichOptions()}
         {this.formatArticleCards()}
+      </div>
       </div>
     );
   }
