@@ -115,6 +115,7 @@ class ArticleCard extends React.Component {
   }
 
   render(){
+    console.log(this.props);
     return(
       <div>
         <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>

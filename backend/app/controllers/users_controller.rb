@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    debugger
+    # debugger
     cur_user.update(user_params)
     render json: cur_user, include: "**"
   end

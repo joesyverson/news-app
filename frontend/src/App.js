@@ -34,11 +34,11 @@ class App extends React.Component {
     return articles
   }
 
-  saveOrDeleteArticle = (article) => {
+  saveOrDeleteArticle = (e, article) => {
     // debugger
     if(this.userArticleURLs().includes(article.url)) {
       // debugger
-      this.deleteArticle(this.state.userData.all_articles.find((userArticle) => userArticle.url === article.url))
+      this.deleteArticle(e, this.state.userData.all_articles.find((userArticle) => userArticle.url === article.url))
     } else {
       // debugger
       this.saveArticle(article)
@@ -60,8 +60,8 @@ class App extends React.Component {
     .then((json) => this.fetchGetProfile() )
   }
 
-  deleteArticle = (article) => {
-    debugger
+  deleteArticle = (e, article) => {
+    // debugger
     fetch(`http://localhost:3000/user-articles/${article.id}`, {
       method: 'DELETE',
       headers: {

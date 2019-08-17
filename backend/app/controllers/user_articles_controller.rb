@@ -8,10 +8,10 @@ class UserArticlesController < ApplicationController
     # debugger
     if cur_user.user_articles.find_by(article_id: params[:id]) || cur_user.comments.where(article_id: 9)
       # debugger
-      to_destroy.destroy
+      to_destroy.destroy if to_destroy
 
       # debugger
-      articles_by_comment.destroy_all
+      articles_by_comment.destroy_all if articles_by_comment
       render json: {destroyed: true}
     else
       render json: {destroyed: false}
