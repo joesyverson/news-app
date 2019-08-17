@@ -7,7 +7,15 @@ import ArticleCard from './ArticleCard.js';
 class Profile extends React.Component {
 
   state = {
-    userData: []
+    userData: [],
+    form: {
+      name: "",
+      password: "",
+      age: 0,
+      location: "",
+      email: "",
+      showForm: false
+    }
   }
 
   componentDidMount = () => {
@@ -19,7 +27,12 @@ class Profile extends React.Component {
       })
       .then(res => res.json())
       .then(json => {
-        this.setState({userData: json})
+        this.setState({
+          userData: json,
+          form: {
+            showForm: this.state.form.showForm
+          }
+        })
       })
     }
   }
@@ -35,6 +48,34 @@ class Profile extends React.Component {
     }
   }
 
+  setFormToState = () => {
+    if(this.state.form.showForm) {
+      this.updateUser()
+    } else {
+      this.setState(
+        {
+          userData: this.state.userData,
+          form: {
+            showForm: !this.state.form.showForm
+          }
+        }
+      )
+    }
+  }
+
+  closeForm = () => {
+    this.setState({
+      userData: this.state.userData,
+      form: {
+        showForm: !this.state.form.showForm
+      }
+    })
+  }
+
+  updateUser = () => {
+    debugger
+  }
+
   // renderFriendCards = () => {
   //   // debugger
   //   if(this.props.followees) {
@@ -43,6 +84,45 @@ class Profile extends React.Component {
   //     })
   //   }
   // }
+
+  showForm = () => {
+    // debugger
+    return(
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <input
+      type="text"
+      name="name"
+      placeholder="username"
+      value={this.state.userData.name}
+      onChange={(e) => this.handleChange(e)}/>
+      <input
+      type="password"
+      name="password"
+      placeholder="password"
+      value={this.state.userData.password}
+      onChange={(e) => this.handleChange(e)}/>
+      <input
+      type="number"
+      name="age"
+      placeholder="age"
+      value={this.state.userData.age}
+      onChange={(e) => this.handleChange(e)}/>
+      <input
+      type="text"
+      name="location"
+      placeholder="location"
+      value={this.state.userData.location}
+      onChange={(e) => this.handleChange(e)}/>
+      <input
+      type="email"
+      name="email"
+      placeholder="email"
+      value={this.state.userData.email}
+      onChange={(e) => this.handleChange(e)}/>
+      <input type="submit"/>
+      </form>
+    )
+  }
 
   renderArticles = () => {
     console.log(this.props);
@@ -72,7 +152,10 @@ class Profile extends React.Component {
           {this.renderWhichOptions()}
           <h3>@{this.state.userData.name}</h3>
           <p>Age: {this.state.userData.age}</p>
-          <p>Location: {this.state.userData.city}</p>
+          <p>Location: {this.state.userData.location}</p>
+          {this.state.form.showForm ? this.showForm() : null}
+          <button onClick={this.setFormToState}>UPDATE</button>
+          {this.state.form.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
           <div>
             <h4>Articles</h4>
             {this.renderArticles()}
@@ -87,6 +170,8 @@ class Profile extends React.Component {
   // </div>
 
   render() {
+    console.log(this.props);
+    console.log(this.state);
     return this.renderUserData()
   }
 }
