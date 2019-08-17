@@ -64,10 +64,10 @@ class Signup extends React.Component {
       value={this.state.age}
       onChange={(e) => this.handleChange(e)}/>
       <input
-      type="number"
-      name="location_id"
+      type="text"
+      name="location"
       placeholder="location"
-      value={this.state.location_id}
+      value={this.state.location}
       onChange={(e) => this.handleChange(e)}/>
       <input
       type="email"
