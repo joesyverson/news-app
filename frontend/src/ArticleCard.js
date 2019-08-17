@@ -3,8 +3,6 @@ import React from 'react';
 import Comment from './CommentCard.js'
 
 class ArticleCard extends React.Component {
-  // console.log(this.props.data);
-
   state = {
     comment: "",
     comments: [],
@@ -47,12 +45,10 @@ class ArticleCard extends React.Component {
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
-    // console.log(e.target.value)
-    // debugger
   }
 
   handleClick = (e, data) => {
-    // debugger
+    debugger
     if(e.target.name === "delete-comment"){
       // debugger
       fetch(`http://localhost:3000/comments/${data.id}`, {
@@ -119,7 +115,6 @@ class ArticleCard extends React.Component {
   }
 
   render(){
-    console.log(this.props.data);
     return(
       <div>
         <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>

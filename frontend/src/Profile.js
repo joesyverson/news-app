@@ -7,18 +7,11 @@ import ArticleCard from './ArticleCard.js';
 class Profile extends React.Component {
 
   state = {
-    userData: [],
-    form: {
-      name: "",
-      password: "",
-      age: 0,
-      location: "",
-      email: "",
-      showForm: false
-    }
+    userData: {},
+    showForm: false
   }
 
-  componentDidMount = () => {
+  fillForm = () => {
     if (localStorage.token) {
       fetch('http://localhost:3000/users/profile', {
         headers: {
@@ -29,9 +22,7 @@ class Profile extends React.Component {
       .then(json => {
         this.setState({
           userData: json,
-          form: {
-            showForm: this.state.form.showForm
-          }
+          showForm: !this.state.showForm
         })
       })
     }
@@ -49,31 +40,40 @@ class Profile extends React.Component {
   }
 
   setFormToState = () => {
-    if(this.state.form.showForm) {
+    if(this.state.showForm) {
+      this.closeForm()
       this.updateUser()
     } else {
-      this.setState(
-        {
-          userData: this.state.userData,
-          form: {
-            showForm: !this.state.form.showForm
-          }
-        }
-      )
+      this.fillForm()
     }
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      userData: {...this.state.userData, ...{[e.target.name]: e.target.value}},
+      showForm: this.state.showForm
+    })
   }
 
   closeForm = () => {
     this.setState({
       userData: this.state.userData,
-      form: {
-        showForm: !this.state.form.showForm
+      showForm: !this.state.showForm
       }
-    })
+    )
   }
 
   updateUser = () => {
-    debugger
+    // debugger
+    let config = {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.token
+      },
+      body: JSON.stringify(this.state.userData)
+    }
+    fetch('http://localhost:3000/users/profile/edit', config)
   }
 
   // renderFriendCards = () => {
@@ -137,31 +137,31 @@ class Profile extends React.Component {
     //
     //   return allSavedArticles
     // }
-    if(this.props.all_articles) {
-      return this.props.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true}/>)
+    if(this.props.userData.all_articles) {
+      return this.props.userData.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true}/>)
     }
   }
 
   renderUserData = () => {
-    if(!localStorage.token) {
-      this.props.history.push('/')
-      return <div></div>
-    } else {
+    if(this.props.userData) {
       return(
         <div>
           {this.renderWhichOptions()}
-          <h3>@{this.state.userData.name}</h3>
-          <p>Age: {this.state.userData.age}</p>
-          <p>Location: {this.state.userData.location}</p>
-          {this.state.form.showForm ? this.showForm() : null}
+          <h3>@{this.props.userData.name}</h3>
+          <p>Age: {this.props.userData.age}</p>
+          <p>Location: {this.props.userData.location}</p>
+          {this.state.showForm ? this.showForm() : null}
           <button onClick={this.setFormToState}>UPDATE</button>
-          {this.state.form.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
+          {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
           <div>
             <h4>Articles</h4>
             {this.renderArticles()}
           </div>
         </div>
       )
+    } else {
+      this.props.history.push('/')
+      return <div></div>
     }
   }
   // <div>
@@ -171,7 +171,7 @@ class Profile extends React.Component {
 
   render() {
     console.log(this.props);
-    console.log(this.state);
+    // console.log(this.state);
     return this.renderUserData()
   }
 }

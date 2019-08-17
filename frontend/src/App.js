@@ -61,7 +61,7 @@ class App extends React.Component {
   }
 
   deleteArticle = (article) => {
-    // debugger
+    debugger
     fetch(`http://localhost:3000/user-articles/${article.id}`, {
       method: 'DELETE',
       headers: {
@@ -107,7 +107,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} {...this.state.userData} deleteArticle={this.deleteArticle}/>}/>
+            render={(routerProps) => <Profile {...routerProps} userData={this.state.userData} deleteArticle={this.deleteArticle}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
