@@ -4,7 +4,7 @@ const Comment = (props) => {
   console.log(props);
 
   function displayComment() {
-    return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at}]`
+    return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at.slice(0, 10)}]`
   }
 
   function showDeleteButton() {
