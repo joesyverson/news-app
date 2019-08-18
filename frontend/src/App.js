@@ -101,6 +101,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1>TOP TEN</h1>

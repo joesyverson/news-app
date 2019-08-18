@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     if Article.find_by(url: comment_params[:url])
       render json: Article.find_by(url: comment_params[:url]).comments.sort_by {|comment| comment.updated_at}.reverse
     else
-      render json: [{response: false}]
+      render json: [{id: 0, article_id: 0, comment_user: "", content: "", user_id: 0, updated_at: ""}]
     end
   end
 

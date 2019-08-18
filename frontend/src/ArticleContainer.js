@@ -46,12 +46,14 @@ class ArticleContainer extends React.Component {
     this.setState({errors: error})
   }
 
+  currentUser = () => this.props.userData ? this.props.userData.name : null
+
   formatArticleCards = () => {
     if(this.props.extAPIArticles) {
       return this.props.extAPIArticles.map((article, idx) => {
         let saved = this.userArticleURLs(article.url)
         return (
-          <ArticleCard data={article} key={"article-container-" + idx} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
+          <ArticleCard data={article} key={"article-container-" + idx} currentUser={this.currentUser()} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
         )
       })
     }

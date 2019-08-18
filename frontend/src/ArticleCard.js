@@ -48,7 +48,7 @@ class ArticleCard extends React.Component {
   }
 
   handleClick = (e, data) => {
-    debugger
+    // debugger
     if(e.target.name === "delete-comment"){
       // debugger
       fetch(`http://localhost:3000/comments/${data.id}`, {
@@ -99,23 +99,27 @@ class ArticleCard extends React.Component {
       comments: json,
       jsxComments: this.state.jsxComments,
       displayComments: true
-    })).then(() => this.formatComments())
+    })).then(() => this.state.comments[0].id !== 0 ? this.formatComments() : null)
   }
 
   formatComments = () => {
     // debugger
+    console.log(this.state.comments);
     let jsxComments = []
-    jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx} handleClick={this.handleClick}/>)
-    this.setState({
-      comment: this.state.comment,
-      comments: this.state.comments,
-      jsxComments: jsxComments,
-      displayComments: true
-    })
+    if(this.state.comments) {
+      jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx} handleClick={this.handleClick} currentUser={this.props.currentUser}/>)
+      this.setState({
+        comment: this.state.comment,
+        comments: this.state.comments,
+        jsxComments: jsxComments,
+        displayComments: true
+      }, console.log(this.state.comments))
+    }
   }
 
   render(){
-    console.log(this.props);
+    // console.log(this.props);
+
     return(
       <div>
         <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>

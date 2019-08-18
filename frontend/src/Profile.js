@@ -138,7 +138,7 @@ class Profile extends React.Component {
     //   return allSavedArticles
     // }
     if(this.props.userData.all_articles) {
-      return this.props.userData.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true}/>)
+      return this.props.userData.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true} currentUser={this.props.userData.name}/>)
     }
   }
 

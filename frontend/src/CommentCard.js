@@ -7,10 +7,16 @@ const Comment = (props) => {
     return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at}]`
   }
 
+  function showDeleteButton() {
+    if(props.data) {
+      return props.currentUser === props.data.comment_user ? <button name="delete-comment" value={props.data.id} onClick={(e) => props.handleClick(e, props.data)}>DELETE</button> : null
+    }
+  }
+
   return(
     <div>
       {props.data ? displayComment() : null}
-      {props.data ? <button name="delete-comment" value={props.data.id} onClick={(e) => props.handleClick(e, props.data)}>DELETE</button> : null}
+      {props.data ? showDeleteButton() : null}
     </div>
   )
 }
