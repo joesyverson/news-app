@@ -118,10 +118,11 @@ class ArticleCard extends React.Component {
   }
 
   render(){
-    // console.log(this.props);
+    console.log(this.props);
 
     return(
       <div>
+      {this.props.num ? <h3>{this.props.num}</h3> : null}
         <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>
         <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
         <p>{this.props.data.description}</p>

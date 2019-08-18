@@ -89,7 +89,7 @@ class App extends React.Component {
     fetch(this.request())
     .then(r => r.json())
     .then(json => this.setState({
-      extAPIArticles: json.articles,
+      extAPIArticles: json.articles.slice(0, 10),
       userData: this.state.userData
     }))
   }

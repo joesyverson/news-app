@@ -53,7 +53,7 @@ class ArticleContainer extends React.Component {
       return this.props.extAPIArticles.map((article, idx) => {
         let saved = this.userArticleURLs(article.url)
         return (
-          <ArticleCard data={article} key={"article-container-" + idx} currentUser={this.currentUser()} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
+          <ArticleCard data={article} key={"article-container-" + idx} num={idx + 1} currentUser={this.currentUser()} handleClick={this.props.handleClick} saved={saved} renderComments={this.renderComments}/>
         )
       })
     }
