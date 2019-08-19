@@ -75,10 +75,6 @@ class ArticleCard extends React.Component {
     return(
       <div>
         <button  onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
-          <input type="submit" value="COMMENT" className="button"/>
-        </form>
       </div>
     )
   }
@@ -117,6 +113,15 @@ class ArticleCard extends React.Component {
     }
   }
 
+  displayCommentForm = () => {
+    return(
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+        <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
+        <input type="submit" value="COMMENT" className="button"/>
+      </form>
+    )
+  }
+
   render(){
     return(
       <div>
@@ -127,6 +132,7 @@ class ArticleCard extends React.Component {
         {localStorage.token ? this.renderUserButtons() : null}
         <div>
           <button data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</button>
+          {this.state.displayComments? this.displayCommentForm() : null}
           {this.state.jsxComments}
         </div>
       </div>

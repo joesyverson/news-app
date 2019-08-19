@@ -4,6 +4,7 @@ button {
   border: 0vw;
   padding: 0vw;
   background-color: white;
+  text-decoration: none;
 }
 
 .button {
@@ -12,5 +13,6 @@ button {
   border: 0vw;
   padding: 0vw;
   background-color: white;
+  text-decoration: none;
   /* color: red; */
 }
