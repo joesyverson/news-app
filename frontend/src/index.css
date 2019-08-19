@@ -1,3 +1,7 @@
+* {
+  font-family: serif;
+}
+
 button, .button {
   font-size: 100%;
   border: 0.005vw;
@@ -9,6 +13,8 @@ button, .button {
 }
 
 a {
+  font-size: 100%;
+  font-family: inherit;
   color: inherit;
   text-decoration: none;
 }

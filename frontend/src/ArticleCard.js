@@ -129,7 +129,8 @@ class ArticleCard extends React.Component {
       <div>
       {this.props.num ? <div>{this.props.num}</div> : null}
         <div>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</div>
-        <div><a href={this.props.data.url} target="blank">{this.props.data.title}</a></div>
+        <div>{this.props.data.title}</div>
+        <button><a href={this.props.data.url} target="blank">VISIT</a></button>
         <div>{this.props.data.description}</div>
         {localStorage.token ? this.renderUserButtons() : null}
         <div>
