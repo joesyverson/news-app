@@ -103,7 +103,15 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div>TOP TEN</div>
+        <div className="flex-container">
+          <span className="flex-column">T</span>
+          <span className="flex-column">O</span>
+          <span className="flex-column">P</span>
+          <span className="flex-column"></span>
+          <span className="flex-column">T</span>
+          <span className="flex-column">E</span>
+          <span className="flex-column">N</span>
+        </div>
         <Switch>
           <Route
             path="/profile"
@@ -112,13 +120,13 @@ class App extends React.Component {
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
-        <div>
-          <button>About</button>
-          <button>Terms of Use</button>
-          <button>Privacy</button>
-          <button>Contact</button>
+        <div className="flex-container">
+          <button className="flex-column">About</button>
+          <button className="flex-column">Terms of Use</button>
+          <button className="flex-column">Privacy</button>
+          <button className="flex-column">Contact</button>
         </div>
-        Powered by <button><a href="https://newsapi.org" target="blank">News A P I</a></button>
+        <span className="attribution">Powered by <a id="attribution" href="https://newsapi.org" target="blank">News A P I</a></span>
       </React.Fragment>
     );
   }

@@ -16,14 +16,14 @@ class ArticleContainer extends React.Component {
     // debugger
     if(localStorage.token) {
       return(
-        <div>
-          <NavLink to="/profile" className="button" >Profile</NavLink>
-          <NavLink to="/" className="button" onClick={() => localStorage.clear()}>Signout</NavLink>
+        <div className="flex-container">
+          <NavLink to="/profile" className="button flex-column" >PROFILE</NavLink>
+          <NavLink to="/" className="button flex-column" onClick={() => localStorage.clear()}>SIGNOUT</NavLink>
         </div>
       );
     } else {
         return(
-          <div>
+          <div className="flex-container">
             <Login {...this.props} getProfile={this.props.getProfile} showError={this.setErrorToState}/>
             <Signup {...this.props} showError={this.setErrorToState}/>
           </div>
@@ -64,9 +64,9 @@ class ArticleContainer extends React.Component {
       <React.Fragment>
       <div>
         {this.state.errors}
-      </div>
-      <div>
         {this.renderWhichOptions()}
+      </div>
+      <div className="article-grid">
         {this.formatArticleCards()}
       </div>
       </React.Fragment>

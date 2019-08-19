@@ -126,7 +126,7 @@ class ArticleCard extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="article-column">
       {this.props.num ? <div>{this.props.num}</div> : null}
         <div>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</div>
         <div>{this.props.data.title}</div>

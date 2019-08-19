@@ -2,8 +2,15 @@
   font-family: serif;
 }
 
+body {
+  padding-left: 3.5vw;
+  padding-right: 3.5vw;
+  /* padding-top: 2vw;
+  padding-bottom: 2vw; */
+}
+
 button, .button {
-  font-size: 100%;
+  font-size: inherit;
   border: 0.005vw;
   border-style: solid;
   border-color: black;
@@ -13,7 +20,7 @@ button, .button {
 }
 
 a {
-  font-size: 100%;
+  font-size: inherit;
   font-family: inherit;
   color: inherit;
   text-decoration: none;
@@ -21,7 +28,7 @@ a {
 
 input {
   font-family: inherit;
-  font-size: 100%;
+  font-size: inherit;
   border: 0.005vw;
   border-style: solid;
   border-color: black;
@@ -33,4 +40,39 @@ input {
   padding: 1vw;
   background-color: white;
   text-decoration: none;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.article-column {
+  display: inline-grid;
+  margin: 1vw;
+  border-bottom: 0.005vw;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+}
+
+.flex-container {
+  display: flex;
+  padding: 1vw;
+}
+
+.flex-column {
+  flex: 1;
+  /* justify-content: space-between; */
+  text-align: center;
+}
+
+.attribution {
+  float: right;
+  padding: 1vw;
+}
+
+#attribution:hover {
+  color: red;
 }

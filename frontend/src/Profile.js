@@ -125,7 +125,6 @@ class Profile extends React.Component {
   }
 
   renderArticles = () => {
-    console.log(this.props);
     // debugger
     // if(this.props.articles && this.props.mention_articles && this.props.comment_articles){
     //   let userArticles = this.props.articles.map((article) => <ArticleCard data={article} key={"saved-" + article.id} handleClick={this.props.deleteArticle} saved={true}/>)
@@ -151,10 +150,10 @@ class Profile extends React.Component {
           <div>Age: {this.props.userData.age}</div>
           <div>Location: {this.props.userData.location}</div>
           {this.state.showForm ? this.showForm() : null}
-          <div onClick={this.setFormToState}>UPDATE</div>
-          {this.state.showForm === true ? <div onClick={this.closeForm}>CANCEL</div> : null}
+          <button onClick={this.setFormToState}>UPDATE</button>
+          {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
+          <div>Updates</div>
           <div>
-            <div>Articles</div>
             {this.renderArticles()}
           </div>
         </div>

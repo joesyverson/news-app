@@ -83,7 +83,7 @@ class Signup extends React.Component {
   render() {
     return(
       <div>
-        <span onClick={() => this.setState({showForm: !this.state.showForm})}>Signup</span>
+        <button onClick={() => this.setState({showForm: !this.state.showForm})}>Signup</button>
         {this.state.showForm ? this.showForm() : null}
       </div>
     )
