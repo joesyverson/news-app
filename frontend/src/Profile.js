@@ -119,7 +119,7 @@ class Profile extends React.Component {
           placeholder="email"
           value={this.state.userData.email}
           onChange={(e) => this.handleChange(e)}/>
-        <input type="submit"/>
+        <input type="submit" className="button"/>
       </form>
     )
   }

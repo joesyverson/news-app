@@ -115,10 +115,12 @@ class ArticleCard extends React.Component {
 
   displayCommentForm = () => {
     return(
+      <React.Fragment>
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
         <input type="submit" value="COMMENT" className="button"/>
       </form>
+      </React.Fragment>
     )
   }
 
@@ -131,7 +133,7 @@ class ArticleCard extends React.Component {
         <div>{this.props.data.description}</div>
         {localStorage.token ? this.renderUserButtons() : null}
         <div>
-          <button data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</button>
+        {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</button> : null}
           {this.state.displayComments? this.displayCommentForm() : null}
           {this.state.jsxComments}
         </div>

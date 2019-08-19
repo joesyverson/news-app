@@ -61,7 +61,7 @@ class ArticleContainer extends React.Component {
 
   render(){
     return (
-      <div>
+      <React.Fragment>
       <div>
         {this.state.errors}
       </div>
@@ -69,7 +69,7 @@ class ArticleContainer extends React.Component {
         {this.renderWhichOptions()}
         {this.formatArticleCards()}
       </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

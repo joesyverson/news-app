@@ -102,7 +102,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div>TOP TEN</div>
         <Switch>
           <Route
@@ -119,7 +119,7 @@ class App extends React.Component {
           <button>Contact</button>
         </div>
         Powered by <button><a href="https://newsapi.org" target="blank">News A P I</a></button>
-      </div>
+      </React.Fragment>
     );
   }
 
