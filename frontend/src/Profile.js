@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import FriendCard from './FriendCard.js';
 import ArticleCard from './ArticleCard.js';
@@ -32,8 +32,8 @@ class Profile extends React.Component {
     if(localStorage.token) {
       return(
         <div>
-          <Link to="/">Headlines</Link>
-          <Link to="/" onClick={() => localStorage.clear()}>Signout</Link>
+          <NavLink to="/" className="button">Headlines</NavLink>
+          <NavLink to="/" onClick={() => localStorage.clear()} className="button">Signout</NavLink>
         </div>
       );
     }
@@ -89,37 +89,37 @@ class Profile extends React.Component {
     // debugger
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
-      <input
-      type="text"
-      name="name"
-      placeholder="username"
-      value={this.state.userData.name}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="password"
-      name="password"
-      placeholder="password"
-      value={this.state.userData.password}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="number"
-      name="age"
-      placeholder="age"
-      value={this.state.userData.age}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="text"
-      name="location"
-      placeholder="location"
-      value={this.state.userData.location}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="email"
-      name="email"
-      placeholder="email"
-      value={this.state.userData.email}
-      onChange={(e) => this.handleChange(e)}/>
-      <input type="submit"/>
+        <input
+          type="text"
+          name="name"
+          placeholder="username"
+          value={this.state.userData.name}
+          onChange={(e) => this.handleChange(e)}/>
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          value={this.state.userData.password}
+          onChange={(e) => this.handleChange(e)}/>
+        <input
+          type="number"
+          name="age"
+          placeholder="age"
+          value={this.state.userData.age}
+          onChange={(e) => this.handleChange(e)}/>
+        <input
+          type="text"
+          name="location"
+          placeholder="location"
+          value={this.state.userData.location}
+          onChange={(e) => this.handleChange(e)}/>
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={this.state.userData.email}
+          onChange={(e) => this.handleChange(e)}/>
+        <input type="submit"/>
       </form>
     )
   }
@@ -147,14 +147,14 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <h3>@{this.props.userData.name}</h3>
-          <p>Age: {this.props.userData.age}</p>
-          <p>Location: {this.props.userData.location}</p>
+          <div>@{this.props.userData.name}</div>
+          <div>Age: {this.props.userData.age}</div>
+          <div>Location: {this.props.userData.location}</div>
           {this.state.showForm ? this.showForm() : null}
-          <button onClick={this.setFormToState}>UPDATE</button>
-          {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
+          <div onClick={this.setFormToState}>UPDATE</div>
+          {this.state.showForm === true ? <div onClick={this.closeForm}>CANCEL</div> : null}
           <div>
-            <h4>Articles</h4>
+            <div>Articles</div>
             {this.renderArticles()}
           </div>
         </div>

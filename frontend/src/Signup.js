@@ -45,37 +45,37 @@ class Signup extends React.Component {
   showForm = () => {
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
-      <input
-      type="text"
-      name="name"
-      placeholder="username"
-      value={this.state.name}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="password"
-      name="password"
-      placeholder="password"
-      value={this.state.password}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="number"
-      name="age"
-      placeholder="age"
-      value={this.state.age}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="text"
-      name="location"
-      placeholder="location"
-      value={this.state.location}
-      onChange={(e) => this.handleChange(e)}/>
-      <input
-      type="email"
-      name="email"
-      placeholder="email"
-      value={this.state.email}
-      onChange={(e) => this.handleChange(e)}/>
-      <input type="submit"/>
+        <input
+            type="text"
+            name="name"
+            placeholder="username"
+            value={this.state.name}
+            onChange={(e) => this.handleChange(e)}/>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={this.state.password}
+            onChange={(e) => this.handleChange(e)}/>
+          <input
+            type="number"
+            name="age"
+            placeholder="age"
+            value={this.state.age}
+            onChange={(e) => this.handleChange(e)}/>
+          <input
+            type="text"
+            name="location"
+            placeholder="location"
+            value={this.state.location}
+            onChange={(e) => this.handleChange(e)}/>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            value={this.state.email}
+            onChange={(e) => this.handleChange(e)}/>
+          <input type="submit" className="button"/>
       </form>
     )
   }

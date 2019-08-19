@@ -101,10 +101,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
-        <h1>TOP TEN</h1>
+        <div>TOP TEN</div>
         <Switch>
           <Route
             path="/profile"
@@ -114,12 +113,12 @@ class App extends React.Component {
             render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
         <div>
-          <span>About</span>
-          <span>Terms of Use</span>
-          <span>Privacy</span>
-          <span>Contact</span>
+          <button>About</button>
+          <button>Terms of Use</button>
+          <button>Privacy</button>
+          <button>Contact</button>
         </div>
-        Powered by <a href="https://newsapi.org" target="blank">News A P I</a>
+        Powered by <button><a href="https://newsapi.org" target="blank">News A P I</a></button>
       </div>
     );
   }

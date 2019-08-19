@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import Signup from './Signup';
 import Login from './Login.js';
@@ -17,8 +17,8 @@ class ArticleContainer extends React.Component {
     if(localStorage.token) {
       return(
         <div>
-          <Link to="/profile">Profile</Link>
-          <Link to="/" onClick={() => localStorage.clear()}>Signout</Link>
+          <NavLink to="/profile" className="button" >Profile</NavLink>
+          <NavLink to="/" className="button" onClick={() => localStorage.clear()}>Signout</NavLink>
         </div>
       );
     } else {

@@ -74,10 +74,10 @@ class ArticleCard extends React.Component {
   renderUserButtons = () => {
     return(
       <div>
-        <button onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button>
+        <button  onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
-          <input type="submit" value="COMMENT"/>
+          <input type="submit" value="COMMENT" className="button"/>
         </form>
       </div>
     )
@@ -113,25 +113,22 @@ class ArticleCard extends React.Component {
         comments: this.state.comments,
         jsxComments: jsxComments,
         displayComments: true
-      }, console.log(this.state.comments))
+      })
     }
   }
 
   render(){
-    console.log(this.props);
-
     return(
       <div>
-      {this.props.num ? <h3>{this.props.num}</h3> : null}
-        <p>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</p>
-        <p><a href={this.props.data.url} target="blank">{this.props.data.title}</a></p>
-        <p>{this.props.data.description}</p>
+      {this.props.num ? <div>{this.props.num}</div> : null}
+        <div>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</div>
+        <div><a href={this.props.data.url} target="blank">{this.props.data.title}</a></div>
+        <div>{this.props.data.description}</div>
         {localStorage.token ? this.renderUserButtons() : null}
         <div>
-          <h3 data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</h3>
+          <button data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</button>
           {this.state.jsxComments}
         </div>
-        <hr/>
       </div>
     )
   }

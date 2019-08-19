@@ -1,0 +1,16 @@
+button {
+  font-family: inherit;
+  font-size: 100%;
+  border: 0vw;
+  padding: 0vw;
+  background-color: white;
+}
+
+.button {
+  font-family: inherit;
+  font-size: 100%;
+  border: 0vw;
+  padding: 0vw;
+  background-color: white;
+  /* color: red; */
+}
