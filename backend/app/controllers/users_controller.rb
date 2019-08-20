@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if user.valid?
       render json: {token: encode_token(user)}
     else
-      render json: {errors: user.errors.full_messages}, status: 422
+      render json: {errors: "there were errors"}, status: 422
     end
   end
 

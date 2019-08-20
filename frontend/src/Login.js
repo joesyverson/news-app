@@ -34,6 +34,7 @@ class Login extends React.Component {
         }
     })
   }
+  
 
   renderForm = () => {
     return(
@@ -50,7 +51,7 @@ class Login extends React.Component {
           placeholder="password"
           value={this.state.password}
           onChange={(e) => this.handleChange(e)}/>
-        <input type="submit" className="button"/>
+        <input type="submit" className="button" value="LOGIN"/>
       </form>
     )
   }

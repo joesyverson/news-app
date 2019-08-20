@@ -130,11 +130,21 @@ class ArticleCard extends React.Component {
   }
   // <div className="article-description">{this.props.data.description}</div>
 
+  styleFix = () => {
+    if(this.props.num < 10) {
+      return <span className="number"><span className="number-fix">0</span>{this.props.num}</span>
+    } else {
+      return <span className="number">{this.props.num}</span>
+    }
+  }
+
   render(){
     return(
       <div className="article-column">
         <div className="article-text">
-        {this.props.num ? <div className="number">{this.props.num}</div> : null}
+          <div className="number-container">
+            {this.props.num ? this.styleFix() : null}
+          </div>
           <div className="article-title">{this.props.data.title}</div>
         </div>
           <div className="article-buttons">

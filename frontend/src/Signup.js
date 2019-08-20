@@ -29,54 +29,58 @@ class Signup extends React.Component {
         body: JSON.stringify(this.state)
       })
       .then(res => res.json())
-      .then(data =>{
-        if (data.token)  {
-          localStorage.token = data.token
+      .then(json =>{
+        if (json.token)  {
+          localStorage.token = json.token
           this.props.showError("")
           this.props.getProfile()
           this.props.history.push('/')
+        } else {
+          // debugger
+          this.props.showError("Usernames and emails must be unique")
         }
       })
     } else {
-      this.props.showError("All fields must be complete in order to register")
+        this.props.showError('All fields must be complete in order to register.')
     }
+
   }
 
   showForm = () => {
     return(
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input
-            type="text"
-            name="name"
-            placeholder="username"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e)}/>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={this.state.password}
-            onChange={(e) => this.handleChange(e)}/>
-          <input
-            type="number"
-            name="age"
-            placeholder="age"
-            value={this.state.age}
-            onChange={(e) => this.handleChange(e)}/>
-          <input
-            type="text"
-            name="location"
-            placeholder="location"
-            value={this.state.location}
-            onChange={(e) => this.handleChange(e)}/>
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            value={this.state.email}
-            onChange={(e) => this.handleChange(e)}/>
-          <input type="submit" className="button"/>
-      </form>
+              type="text"
+              name="name"
+              placeholder="username"
+              value={this.state.name}
+              onChange={(e) => this.handleChange(e)}/>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={this.state.password}
+              onChange={(e) => this.handleChange(e)}/>
+            <input
+              type="number"
+              name="age"
+              placeholder="age"
+              value={this.state.age}
+              onChange={(e) => this.handleChange(e)}/>
+            <input
+              type="text"
+              name="location"
+              placeholder="location"
+              value={this.state.location}
+              onChange={(e) => this.handleChange(e)}/>
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={this.state.email}
+              onChange={(e) => this.handleChange(e)}/>
+            <input type="submit" className="button" value="SIGNUP"/>
+        </form>
     )
   }
 
@@ -84,6 +88,8 @@ class Signup extends React.Component {
     return(
       <React.Fragment>
         <button className="flex-column" onClick={() => this.setState({showForm: !this.state.showForm})}>SIGNUP</button>
+        <br/>
+        <br/>
         {this.state.showForm ? this.showForm() : null}
       </React.Fragment>
     )

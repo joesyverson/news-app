@@ -12,6 +12,11 @@ class ArticleContainer extends React.Component {
     errors: ""
   }
 
+  setErrorToState = (error) => {
+    // debugger
+    this.setState({errors: error})
+  }
+
   renderWhichOptions = () => {
     // debugger
     if(localStorage.token) {
@@ -41,10 +46,6 @@ class ArticleContainer extends React.Component {
     }
   }
 
-  setErrorToState = (error) => {
-    // debugger
-    this.setState({errors: error})
-  }
 
   currentUser = () => this.props.userData ? this.props.userData.name : null
 
@@ -73,7 +74,9 @@ class ArticleContainer extends React.Component {
     return (
       <div className="main-container">
       <div>
-        {this.state.errors}
+        <div className="error">
+          {this.state.errors}
+        </div>
         {this.renderWhichOptions()}
         <div id="date">
           {this.showDate()}
