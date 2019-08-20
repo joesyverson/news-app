@@ -82,10 +82,10 @@ class Signup extends React.Component {
 
   render() {
     return(
-      <div>
-        <button onClick={() => this.setState({showForm: !this.state.showForm})}>Signup</button>
+      <React.Fragment>
+        <button className="flex-column" onClick={() => this.setState({showForm: !this.state.showForm})}>SIGNUP</button>
         {this.state.showForm ? this.showForm() : null}
-      </div>
+      </React.Fragment>
     )
   }
 }

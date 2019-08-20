@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   userArticleURLs = () => {
-    // console.log(this.state.userData.all_articles);
     let articles = this.state.userData.all_articles.map((article) => article.url)
     return articles
   }
@@ -57,7 +56,7 @@ class App extends React.Component {
     // debugger
     fetch('http://localhost:3000/articles/create-and-save', config)
     .then((res) => res.json())
-    .then((json) => this.fetchGetProfile() )
+    .then((json) => this.fetchGetProfile())
   }
 
   deleteArticle = (e, article) => {
@@ -112,14 +111,16 @@ class App extends React.Component {
           <span className="flex-column">E</span>
           <span className="flex-column">N</span>
         </div>
+
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} userData={this.state.userData} deleteArticle={this.deleteArticle}/>}/>
+            render={(routerProps) => <Profile {...routerProps} userData={this.state.userData} deleteArticle={this.deleteArticle} getProfile={this.fetchGetProfile}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
         </Switch>
+
         <div className="flex-container">
           <button className="flex-column">About</button>
           <button className="flex-column">Terms of Use</button>

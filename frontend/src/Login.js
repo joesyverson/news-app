@@ -57,10 +57,10 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div>
-        <button onClick={() => this.setState({showForm: !this.state.showForm})}>Login</button>
+      <React.Fragment>
+        <button className="flex-column" onClick={() => this.setState({showForm: !this.state.showForm})}>LOGIN</button>
         {this.state.showForm ? this.renderForm() : null}
-      </div>
+      </React.Fragment>
     );
   }
 }

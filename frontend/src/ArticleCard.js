@@ -56,7 +56,7 @@ class ArticleCard extends React.Component {
           headers: {
             Authorization: localStorage.token
           }
-      }).then((json) => this.fetchGetComments())
+      }).then((json) => this.fetchGetComments()).then(() => this.forceUpdate())
     } else if(e.target.dataset.name === 'container') {
         if(!this.state.displayComments) {
           this.fetchGetComments()
@@ -74,12 +74,13 @@ class ArticleCard extends React.Component {
   renderUserButtons = () => {
     return(
       <div>
-        <button  onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
+        <button className="block-button" onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
       </div>
     )
   }
 
   fetchGetComments = () => {
+    // debugger
     fetch(`http://localhost:3000/articles/comments`, {
       method: "POST",
       headers: {
@@ -95,12 +96,10 @@ class ArticleCard extends React.Component {
       comments: json,
       jsxComments: this.state.jsxComments,
       displayComments: true
-    })).then(() => this.state.comments[0].id !== 0 ? this.formatComments() : null)
+    })).then(() => this.state.comments.length > 0 ? this.formatComments() : null)
   }
 
   formatComments = () => {
-    // debugger
-    console.log(this.state.comments);
     let jsxComments = []
     if(this.state.comments) {
       jsxComments = this.state.comments.map((comment, idx) => <Comment data={comment} key={idx} handleClick={this.handleClick} currentUser={this.props.currentUser}/>)
@@ -129,15 +128,19 @@ class ArticleCard extends React.Component {
       <div className="article-column">
       {this.props.num ? <div>{this.props.num}</div> : null}
         <div>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</div>
+
         <div>{this.props.data.title}</div>
-        <button><a href={this.props.data.url} target="blank">VISIT</a></button>
+
+
         <div>{this.props.data.description}</div>
-        {localStorage.token ? this.renderUserButtons() : null}
-        <div>
-        {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)}>{localStorage.token? "Comments" : null}</button> : null}
-          {this.state.displayComments? this.displayCommentForm() : null}
-          {this.state.jsxComments}
-        </div>
+
+          <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
+          {localStorage.token ? this.renderUserButtons() : null}
+          <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
+            {this.state.displayComments? this.displayCommentForm() : null}
+            {this.state.jsxComments}
+          </div>
+
       </div>
     )
   }

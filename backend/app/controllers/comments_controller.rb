@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     to_destroy = cur_user.comments.find(params[:id])
     copy_for_render = to_destroy
     to_destroy.destroy
-    render json: copy_for_render
+    render json: cur_user.comments
   end
 
   private

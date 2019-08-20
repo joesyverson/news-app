@@ -19,6 +19,10 @@ button, .button {
   text-decoration: none;
 }
 
+button:focus, .button:focus {
+  outline: 0;
+}
+
 a {
   font-size: inherit;
   font-family: inherit;
@@ -71,6 +75,15 @@ input {
 .attribution {
   float: right;
   padding: 1vw;
+}
+
+.section-header {
+  text-align: center;
+}
+
+.block-button {
+  display: block;
+  width: 100%;
 }
 
 #attribution:hover {

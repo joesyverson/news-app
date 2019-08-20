@@ -31,9 +31,9 @@ class Profile extends React.Component {
   renderWhichOptions = () => {
     if(localStorage.token) {
       return(
-        <div>
-          <NavLink to="/" className="button">Headlines</NavLink>
-          <NavLink to="/" onClick={() => localStorage.clear()} className="button">Signout</NavLink>
+        <div className="flex-container">
+          <NavLink to="/" className="button flex-column">Headlines</NavLink>
+          <NavLink to="/" onClick={() => localStorage.clear()} className="button flex-column">Signout</NavLink>
         </div>
       );
     }
@@ -137,7 +137,7 @@ class Profile extends React.Component {
     //   return allSavedArticles
     // }
     if(this.props.userData.all_articles) {
-      return this.props.userData.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true} currentUser={this.props.userData.name}/>)
+      return this.props.userData.all_articles.map((article) => <ArticleCard data={article} key={article.id} handleClick={this.props.deleteArticle} saved={true} currentUser={this.props.userData.name} getProfile={this.props.getProfile}/>)
     }
   }
 
@@ -146,15 +146,23 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <div>@{this.props.userData.name}</div>
-          <div>Age: {this.props.userData.age}</div>
-          <div>Location: {this.props.userData.location}</div>
-          {this.state.showForm ? this.showForm() : null}
-          <button onClick={this.setFormToState}>UPDATE</button>
-          {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
-          <div>Updates</div>
+          <div className="flex-container">
+            <span className="flex-column">
+              <div>@{this.props.userData.name}</div>
+              <div>Age: {this.props.userData.age}</div>
+              <div>Location: {this.props.userData.location}</div>
+              {this.state.showForm ? this.showForm() : null}
+            </span>
+            <span className="flex-column">
+              <button onClick={this.setFormToState}>UPDATE</button>
+              {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
+            </span>
+          </div>
           <div>
-            {this.renderArticles()}
+            <div className="section-header">UPDATES</div>
+            <div>
+              {this.renderArticles()}
+            </div>
           </div>
         </div>
       )
@@ -169,8 +177,6 @@ class Profile extends React.Component {
   // </div>
 
   render() {
-    console.log(this.props);
-    // console.log(this.state);
     return this.renderUserData()
   }
 }
