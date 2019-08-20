@@ -49,6 +49,7 @@ class ArticleCard extends React.Component {
 
   handleClick = (e, data) => {
     // debugger
+    // console.log(e.target.name);
     if(e.target.name === "delete-comment"){
       // debugger
       fetch(`http://localhost:3000/comments/${data.id}`, {
@@ -127,24 +128,23 @@ class ArticleCard extends React.Component {
       </React.Fragment>
     )
   }
+  // <div className="article-description">{this.props.data.description}</div>
 
   render(){
     return(
       <div className="article-column">
-      {this.props.num ? <div>{this.props.num}</div> : null}
-        <div>{this.props.data.publishedAt ? this.props.data.publishedAt.slice(0,10) :   this.props.data.published_at.slice(0,10)}</div>
-
-        <div>{this.props.data.title}</div>
-
-
-        <div>{this.props.data.description}</div>
-
-          <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
-          {localStorage.token ? this.renderUserButtons() : null}
-          <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
+        <div className="article-text">
+        {this.props.num ? <div className="number">{this.props.num}</div> : null}
+          <div className="article-title">{this.props.data.title}</div>
+        </div>
+          <div className="article-buttons">
+            <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
+            {localStorage.token ? this.renderUserButtons() : null}
+            <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
             {this.state.displayComments? this.displayCommentForm() : null}
             {this.state.jsxComments}
           </div>
+        </div>
 
       </div>
     )

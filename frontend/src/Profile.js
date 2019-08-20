@@ -32,8 +32,8 @@ class Profile extends React.Component {
     if(localStorage.token) {
       return(
         <div className="flex-container">
-          <NavLink to="/" className="button flex-column">Headlines</NavLink>
-          <NavLink to="/" onClick={() => localStorage.clear()} className="button flex-column">Signout</NavLink>
+          <NavLink to="/" className="button flex-column">HEADLINES</NavLink>
+          <NavLink to="/" onClick={() => localStorage.clear()} className="button flex-column">SIGNOUT</NavLink>
         </div>
       );
     }
@@ -146,18 +146,15 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <div className="flex-container">
-            <span className="flex-column">
-              <div>@{this.props.userData.name}</div>
-              <div>Age: {this.props.userData.age}</div>
-              <div>Location: {this.props.userData.location}</div>
+          <div className="profile">
+              <div className="profile-item" id="username">@{this.props.userData.name}</div>
+              <div className="profile-item">Age: {this.props.userData.age}</div>
+              <div className="profile-item">Location: {this.props.userData.location}</div>
               {this.state.showForm ? this.showForm() : null}
-            </span>
-            <span className="flex-column">
               <button onClick={this.setFormToState}>UPDATE</button>
               {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
-            </span>
           </div>
+
           <div>
             <div className="section-header">UPDATES</div>
             <div>

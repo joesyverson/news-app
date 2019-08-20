@@ -59,17 +59,30 @@ class ArticleContainer extends React.Component {
     }
   }
 
+  showDate = () => {
+    let date = new Date().toString().slice(4, 15)
+    let month = date.slice(0, 3)
+    let day = date.slice(4, 6)
+    let year = date.slice(7)
+    let newDate = day + " " + month + " " + year
+    return newDate
+  }
+
   render(){
+    console.log(this.showDate());
     return (
-      <React.Fragment>
+      <div className="main-container">
       <div>
         {this.state.errors}
         {this.renderWhichOptions()}
+        <div id="date">
+          {this.showDate()}
+        </div>
       </div>
       <div className="article-grid">
         {this.formatArticleCards()}
       </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -5,8 +5,7 @@
 body {
   padding-left: 3.5vw;
   padding-right: 3.5vw;
-  /* padding-top: 2vw;
-  padding-bottom: 2vw; */
+  height: 100%;
 }
 
 button, .button {
@@ -23,6 +22,11 @@ button:focus, .button:focus {
   outline: 0;
 }
 
+button:hover, .button:hover {
+  background-color: black;
+  color: white;
+}
+
 a {
   font-size: inherit;
   font-family: inherit;
@@ -30,7 +34,13 @@ a {
   text-decoration: none;
 }
 
+form {
+  display: flex;
+}
+
 input {
+  flex: 1;
+  width: auto;
   font-family: inherit;
   font-size: inherit;
   border: 0.005vw;
@@ -46,19 +56,28 @@ input {
   text-decoration: none;
 }
 
+.app-title {
+  font-size: 2em;
+}
+
+.main-container {
+}
+
 .article-grid {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .article-column {
-  display: inline-grid;
+  flex: 1 1;
+  min-width: 15vw;
+  /* height: 536px; */
   margin: 1vw;
-  border-bottom: 0.005vw;
-  border-bottom-style: solid;
-  border-bottom-color: black;
+  margin-left: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .flex-container {
@@ -68,13 +87,17 @@ input {
 
 .flex-column {
   flex: 1;
-  /* justify-content: space-between; */
   text-align: center;
 }
 
-.attribution {
-  float: right;
-  padding: 1vw;
+.profile {
+  text-align: center;
+  margin: 2vw;
+  margin-bottom: 3.5vw;
+}
+
+.profile-item {
+  margin: 1vw;
 }
 
 .section-header {
@@ -84,8 +107,61 @@ input {
 .block-button {
   display: block;
   width: 100%;
+  margin-bottom: 1vw;
 }
+
+.number {
+  margin-bottom: 1.5vw;
+  text-align: right;
+}
+
+.comment {
+  border: 0.005vw;
+  border-style: solid;
+  border-color: black;
+  padding: 0.5vw;
+}
+
+.delete-comment {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.article-text {
+  margin-bottom: 1.5vw;
+}
+
+/*.article-title {
+  margin: 0.5vw
+}
+.article-description {
+  margin: 0.5vw
+} */
+.article-buttons {
+  /* margin: 1.5vw; */
+  justify-self: flex-end;
+  align-self: flex-end;
+  width: 100%;
+}
+
+
+.attribution {
+  float: right;
+  padding: 1vw;
+}
+
 
 #attribution:hover {
   color: red;
+}
+
+#date {
+  display: flex;
+  justify-content: center;
+  padding: 1vw;
+  font-size: 1.75em;
+}
+
+#username {
+  font-size: 1.75em;
 }

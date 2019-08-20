@@ -69,10 +69,6 @@ class App extends React.Component {
     }).then((res) => this.fetchGetProfile())
   }
 
-  // deleteComment = () => {
-  //   debugger
-  // }
-  //
   // deleteMention = () => {
   //   debugger
   // }
@@ -102,7 +98,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="flex-container">
+        <div className="flex-container app-title">
           <span className="flex-column">T</span>
           <span className="flex-column">O</span>
           <span className="flex-column">P</span>
@@ -111,7 +107,6 @@ class App extends React.Component {
           <span className="flex-column">E</span>
           <span className="flex-column">N</span>
         </div>
-
         <Switch>
           <Route
             path="/profile"
