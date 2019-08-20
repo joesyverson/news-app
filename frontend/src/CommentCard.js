@@ -2,6 +2,7 @@ import React from 'react';
 
 const Comment = (props) => {
 
+
   function displayComment() {
     return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at.slice(0, 10)}]`
   }

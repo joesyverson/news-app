@@ -96,7 +96,12 @@ class ArticleCard extends React.Component {
       comments: json,
       jsxComments: this.state.jsxComments,
       displayComments: true
-    })).then(() => this.state.comments.length > 0 ? this.formatComments() : null)
+    })).then(() => this.state.comments.length > 0 ? this.formatComments() : this.setState({
+      comment: this.state.comment,
+      comments: [],
+      jsxComments: [],
+      displayComments: this.state.displayComments
+    }))
   }
 
   formatComments = () => {
