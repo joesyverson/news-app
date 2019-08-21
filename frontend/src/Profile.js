@@ -74,6 +74,8 @@ class Profile extends React.Component {
       body: JSON.stringify(this.state.userData)
     }
     fetch('http://localhost:3000/users/profile/edit', config)
+    .then(res => res.json())
+    .then(json => this.props.updateProfile(json))
   }
 
   // renderFriendCards = () => {
@@ -188,6 +190,7 @@ class Profile extends React.Component {
   // </div>
 
   render() {
+    // console.log(this.props);
     return this.renderUserData()
   }
 }

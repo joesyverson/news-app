@@ -12,6 +12,7 @@ class App extends React.Component {
   }
 
   fetchGetProfile = () => {
+    // debugger
     if (localStorage.token) {
       fetch('http://localhost:3000/users/profile', {
         headers: {
@@ -26,6 +27,14 @@ class App extends React.Component {
         })
       })
     }
+  }
+
+  updateProfileInState = (userData) => {
+    // debugger
+    this.setState({
+      ...this.state.extAPIArticles,
+      userData: userData
+    })
   }
 
   userArticleURLs = () => {
@@ -110,7 +119,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            render={(routerProps) => <Profile {...routerProps} userData={this.state.userData} deleteArticle={this.deleteArticle} getProfile={this.fetchGetProfile}/>}/>
+            render={(routerProps) => <Profile {...routerProps} userData={this.state.userData} deleteArticle={this.deleteArticle} getProfile={this.fetchGetProfile} updateProfile={this.updateProfileInState}/>}/>
           <Route
             path="/"
             render={(routerProps) => <ArticleContainer {...routerProps} {...this.state} handleClick={this.saveOrDeleteArticle} getProfile={this.fetchGetProfile}/>}/>
