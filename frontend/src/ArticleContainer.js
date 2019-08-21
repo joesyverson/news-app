@@ -74,8 +74,8 @@ class ArticleContainer extends React.Component {
     return (
       <div className="main-container">
       <div>
-        <div className="error">
-          {this.state.errors}
+        <div className={this.state.errors? "error" : null}>
+          {this.state.errors ? this.state.errors : null}
         </div>
         {this.renderWhichOptions()}
         <div id="date">

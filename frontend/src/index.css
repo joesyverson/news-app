@@ -35,11 +35,11 @@ a {
   text-decoration: none;
 }
 
-/* form {
+form {
   display: flex;
-} */
+}
 
-input {
+input, textarea {
   flex: 1;
   width: auto;
   font-family: inherit;
@@ -55,6 +55,7 @@ input {
   padding: 1vw;
   background-color: white;
   text-decoration: none;
+  display: inline;
 }
 
 .app-title {
@@ -80,6 +81,7 @@ input {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  background-color: grey;
 }
 
 .flex-container {
@@ -118,6 +120,7 @@ input {
   display: block;
   width: 100%;
   margin-bottom: 1vw;
+  /* vertical-align: bottom; */
 }
 
 .number-container {
@@ -133,11 +136,12 @@ input {
 .number {
   /* width: 100px; */
   /* height: 100px; */
+  background-color: RGB(84, 255, 204);
   margin-bottom: 1.5vw;
   text-align: center;
   border: 0.075vw;
   border-style: solid;
-  border-color: black;
+  border-color: RGB(84, 255, 204);
   border-radius: 50%;
   padding: 1vw;
 }
@@ -171,6 +175,9 @@ input {
   width: 100%;
 }
 
+.profile-article {
+  /* background-color: grey; */
+}
 
 .attribution {
   float: right;

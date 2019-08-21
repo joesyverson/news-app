@@ -140,21 +140,21 @@ class ArticleCard extends React.Component {
 
   render(){
     return(
-      <div className="article-column">
-        <div className="article-text">
-          <div className="number-container">
-            {this.props.num ? this.styleFix() : null}
-          </div>
-          <div className="article-title">{this.props.data.title}</div>
-        </div>
-          <div className="article-buttons">
-            <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
-            {localStorage.token ? this.renderUserButtons() : null}
-            <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
-            {this.state.displayComments? this.displayCommentForm() : null}
-            {this.state.jsxComments}
-          </div>
-        </div>
+      <div className="article-column profile-article">
+      <div className="article-text">
+      <div className="number-container">
+      {this.props.num ? this.styleFix() : null}
+      </div>
+      <div className="article-title">{this.props.data.title}</div>
+      </div>
+      <div className="article-buttons">
+      <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
+      {localStorage.token ? this.renderUserButtons() : null}
+      <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
+      {this.state.displayComments? this.displayCommentForm() : null}
+      {this.state.jsxComments}
+      </div>
+      </div>
 
       </div>
     )

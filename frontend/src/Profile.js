@@ -146,18 +146,19 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-          <div className="profile">
-              <div className="profile-item" id="username">@{this.props.userData.name}</div>
-              <div className="profile-item">Age: {this.props.userData.age}</div>
-              <div className="profile-item">Location: {this.props.userData.location}</div>
-              {this.state.showForm ? this.showForm() : null}
-              <button onClick={this.setFormToState}>UPDATE</button>
-              {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
-          </div>
 
           <div>
-            <div className="section-header">UPDATES</div>
+            <div className="article-grid">
+            <div className="profile flex-column">
+            <div className="profile-item" id="username">@{this.props.userData.name}</div>
+            <div className="profile-item">Age: {this.props.userData.age}</div>
+            <div className="profile-item">Location: {this.props.userData.location}</div>
+            {this.state.showForm ? this.showForm() : null}
             <div>
+            <button onClick={this.setFormToState} className="article-buttons">UPDATE</button>
+            {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
+            </div>
+            </div>
               {this.renderArticles()}
             </div>
           </div>
