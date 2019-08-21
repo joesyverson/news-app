@@ -65,17 +65,24 @@ class Profile extends React.Component {
 
   updateUser = () => {
     // debugger
-    let config = {
-      method: "PATCH",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.token
-      },
-      body: JSON.stringify(this.state.userData)
+    if(this.state.userData.password) {
+      let config = {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.token
+        },
+        body: JSON.stringify(this.state.userData)
+      }
+      fetch('http://localhost:3000/users/profile/edit', config)
+      .then(res => res.json())
+      .then(json => this.props.updateProfile(json))
+    } else {
+      this.setState({
+        ...this.state,
+        errors: "You must enter your password to update profile"
+      })
     }
-    fetch('http://localhost:3000/users/profile/edit', config)
-    .then(res => res.json())
-    .then(json => this.props.updateProfile(json))
   }
 
   // renderFriendCards = () => {
@@ -160,8 +167,8 @@ class Profile extends React.Component {
       return(
         <div>
           {this.renderWhichOptions()}
-
           <div>
+            {this.state.errors? <div className="error">{this.state.errors}</div> : null}
             <div className="article-grid">
             <div className="profile flex-column">
             <div className="profile-item" id="username">@{this.props.userData.name}</div>
