@@ -141,6 +141,18 @@ class Profile extends React.Component {
     }
   }
 
+  destroyUser = () => {
+    let config = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': localStorage.token
+      }
+    }
+    fetch('http://localhost:3000/users/delete', config)
+    .then(() => localStorage.clear())
+    .then(() => this.props.history.push('/'))
+  }
+
   renderUserData = () => {
     if(this.props.userData) {
       return(
@@ -159,6 +171,7 @@ class Profile extends React.Component {
             {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
             </div>
             </div>
+            <button onClick={this.destroyUser}>DELETE</button>
               {this.renderArticles()}
             </div>
           </div>

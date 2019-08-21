@@ -23,9 +23,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    deleted_user = cur_user
+    # deleted_user = cur_user
+    # debugger
     cur_user.destroy
-    render json: "#{cur_user.name destroyed}"
+    render json: "DESTROYED"
   end
 
   def profile
