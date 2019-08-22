@@ -146,7 +146,6 @@ class ArticleCard extends React.Component {
   }
 
   render(){
-    console.log(this.props.data);
     return(
       <div className="article-column profile-article">
       <div className="article-text">

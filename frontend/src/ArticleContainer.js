@@ -22,7 +22,7 @@ class ArticleContainer extends React.Component {
     if(localStorage.token) {
       return(
         <div className="flex-container">
-          <NavLink to="/profile" className="button flex-column header-button-left" >
+          <NavLink to="/profile" onClick={this.props.getProfile} className="button flex-column header-button-left" >
             <span>P </span>
             <span>R </span>
             <span>O </span>
@@ -87,7 +87,7 @@ class ArticleContainer extends React.Component {
 
 
   render(){
-    console.log(this.showDate());
+    console.log(this.props);
     return (
       <div className="main-container">
       <div>

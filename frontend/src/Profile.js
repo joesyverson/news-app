@@ -194,9 +194,9 @@ class Profile extends React.Component {
                   </div>
                 </div>
                 <div  className="article-buttons">
-                  <button onClick={this.setFormToState} className="block-button">UPDATE</button>
-                  {this.state.showForm === true ? <button onClick={this.closeForm} className="block-button">CANCEL</button> : null}
-                  <button onClick={this.destroyUser} className="block-button">DELETE</button>
+                  <button onClick={this.setFormToState} className="block-button article-button">UPDATE</button>
+                  {this.state.showForm === true ? <button onClick={this.closeForm} className="block-button article-button">CANCEL</button> : null}
+                  <button onClick={this.destroyUser} className="block-button article-button">DELETE</button>
                 </div>
               </div>
               {this.renderArticles()}
