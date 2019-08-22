@@ -43,6 +43,10 @@ form {
   display: flex;
 }
 
+.update-form {
+  margin-bottom: 1vw;
+}
+
 input, textarea {
   flex: 1;
   width: auto;

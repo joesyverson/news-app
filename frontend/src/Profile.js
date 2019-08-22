@@ -58,7 +58,8 @@ class Profile extends React.Component {
   closeForm = () => {
     this.setState({
       userData: this.state.userData,
-      showForm: !this.state.showForm
+      showForm: !this.state.showForm,
+      errors: ""
       }
     )
   }
@@ -84,7 +85,10 @@ class Profile extends React.Component {
             errors: "Incorrect password"
           })
         } else {
-          this.setState({showForm: false})
+          this.setState({
+            showForm: false,
+            errors: ""
+          })
           this.props.updateProfile(json)
         }
       })
@@ -109,7 +113,7 @@ class Profile extends React.Component {
   showForm = () => {
     // debugger
     return(
-      <form onSubmit={(e) => this.updateUser(e)}>
+      <form onSubmit={(e) => this.updateUser(e)} className="update-form">
         <input
           type="text"
           name="name"
