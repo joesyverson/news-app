@@ -17,8 +17,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    if cur_user.authenticate(user_params[:password])
       cur_user.update(user_params)
       render json: cur_user, include: "**"
+    else
+      render json: {"error": "error"}
+    end
   end
 
   def destroy

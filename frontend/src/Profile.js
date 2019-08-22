@@ -77,8 +77,16 @@ class Profile extends React.Component {
       fetch('http://localhost:3000/users/profile/edit', config)
       .then(res => res.json())
       .then(json => {
-        this.setState({showForm: false})
-        this.props.updateProfile(json)
+        if(json.error){
+          this.setState({
+            userData: this.state.userData,
+            showForm: this.state.showForm,
+            errors: "Incorrect password"
+          })
+        } else {
+          this.setState({showForm: false})
+          this.props.updateProfile(json)
+        }
       })
     } else {
       // debugger
