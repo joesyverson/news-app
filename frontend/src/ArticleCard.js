@@ -5,16 +5,16 @@ import Comment from './CommentCard.js'
 class ArticleCard extends React.Component {
   state = {
     comment: "",
-    comments: [],
+    comments: ["No users have commented on this article"],
     jsxComments: [],
     displayComments: false
   }
 
   renderWhichButton = () => {
     if(this.props.saved) {
-      return "DELETE"
+      return "D E L E T E"
     } else {
-      return "SAVE"
+      return "S A V E"
     }
   }
 
@@ -75,7 +75,7 @@ class ArticleCard extends React.Component {
   renderUserButtons = () => {
     return(
       <div>
-        <button className="block-button" onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
+        <button className="block-button article-button" onClick={(e) => this.props.handleClick(e, this.props.data)}>{this.renderWhichButton()}</button >
       </div>
     )
   }
@@ -99,7 +99,7 @@ class ArticleCard extends React.Component {
       displayComments: true
     })).then(() => this.state.comments.length > 0 ? this.formatComments() : this.setState({
       comment: this.state.comment,
-      comments: [],
+      comments: ["No users have commented on this article"],
       jsxComments: [],
       displayComments: this.state.displayComments
     }))
@@ -123,14 +123,14 @@ class ArticleCard extends React.Component {
       <React.Fragment>
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <textarea name="comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}></textarea>
-        <input type="submit" value="COMMENT" className="button"/>
+        <input type="submit" value="COMMENT" className="button comment-button"/>
       </form>
       </React.Fragment>
     )
   }
   // <div className="article-description">{this.props.data.description}</div>
 
-  styleFix = () => {
+  styleFixNum = () => {
     if(this.props.num < 10) {
       return <span className="number"><span className="number-fix">0</span>{this.props.num}</span>
     } else {
@@ -138,19 +138,27 @@ class ArticleCard extends React.Component {
     }
   }
 
+  styleFixDate = () => {
+    let date = this.props.data.published_at.slice(0, 10)
+    return (
+      <span className="number">{date}</span>
+    )
+  }
+
   render(){
+    console.log(this.props.data);
     return(
       <div className="article-column profile-article">
       <div className="article-text">
       <div className="number-container">
-      {this.props.num ? this.styleFix() : null}
+      {this.props.num ? this.styleFixNum() : this.styleFixDate()}
       </div>
       <div className="article-title">{this.props.data.title}</div>
       </div>
       <div className="article-buttons">
-      <button className="block-button"><a href={this.props.data.url} target="blank">VISIT</a></button>
+      <button className="block-button article-button"><a href={this.props.data.url} target="blank">V I S I T</a></button>
       {localStorage.token ? this.renderUserButtons() : null}
-      <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button">{localStorage.token? "COMMENTS" : null}</button> : null}
+      <div> {localStorage.token ? <button data-name="container" onClick={(e) => this.handleClick(e, false)} className="block-button article-button">{localStorage.token? "C O M M E N T S" : null}</button> : null}
       {this.state.displayComments? this.displayCommentForm() : null}
       {this.state.jsxComments}
       </div>

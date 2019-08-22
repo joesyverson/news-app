@@ -126,10 +126,10 @@ class App extends React.Component {
         </Switch>
 
         <div className="flex-container">
-          <button className="flex-column">About</button>
-          <button className="flex-column">Terms of Use</button>
+          <button className="flex-column header-button-left">About</button>
+          <button className="flex-column header-button-left">Terms of Use</button>
           <button className="flex-column">Privacy</button>
-          <button className="flex-column">Contact</button>
+          <button className="flex-column header-button-right">Contact</button>
         </div>
         <span className="attribution">Powered by <a id="attribution" href="https://newsapi.org" target="blank">News A P I</a></span>
       </React.Fragment>

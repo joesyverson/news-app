@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import FriendCard from './FriendCard.js';
+// import FriendCard from './FriendCard.js';
 import ArticleCard from './ArticleCard.js';
 
 class Profile extends React.Component {
@@ -32,7 +32,7 @@ class Profile extends React.Component {
     if(localStorage.token) {
       return(
         <div className="flex-container">
-          <NavLink to="/" className="button flex-column">HEADLINES</NavLink>
+          <NavLink to="/" className="button flex-column header-button-left">HEADLINES</NavLink>
           <NavLink to="/" onClick={() => localStorage.clear()} className="button flex-column">SIGNOUT</NavLink>
         </div>
       );
@@ -63,8 +63,8 @@ class Profile extends React.Component {
     )
   }
 
-  updateUser = () => {
-    // debugger
+  updateUser = (e) => {
+    e.preventDefault()
     if(this.state.userData.password) {
       let config = {
         method: "PATCH",
@@ -76,8 +76,12 @@ class Profile extends React.Component {
       }
       fetch('http://localhost:3000/users/profile/edit', config)
       .then(res => res.json())
-      .then(json => this.props.updateProfile(json))
+      .then(json => {
+        this.setState({showForm: false})
+        this.props.updateProfile(json)
+      })
     } else {
+      // debugger
       this.setState({
         ...this.state,
         errors: "You must enter your password to update profile"
@@ -97,7 +101,7 @@ class Profile extends React.Component {
   showForm = () => {
     // debugger
     return(
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form onSubmit={(e) => this.updateUser(e)}>
         <input
           type="text"
           name="name"
@@ -128,7 +132,7 @@ class Profile extends React.Component {
           placeholder="email"
           value={this.state.userData.email}
           onChange={(e) => this.handleChange(e)}/>
-        <input type="submit" className="button"/>
+        <input type="submit" className="button" value="UPDATE"/>
       </form>
     )
   }
@@ -169,35 +173,35 @@ class Profile extends React.Component {
           {this.renderWhichOptions()}
           <div>
             {this.state.errors? <div className="error">{this.state.errors}</div> : null}
-            <div className="article-grid">
-            <div className="profile flex-column">
-            <div className="profile-item" id="username">@{this.props.userData.name}</div>
-            <div className="profile-item">Age: {this.props.userData.age}</div>
-            <div className="profile-item">Location: {this.props.userData.location}</div>
             {this.state.showForm ? this.showForm() : null}
-            <div>
-            <button onClick={this.setFormToState} className="article-buttons">UPDATE</button>
-            {this.state.showForm === true ? <button onClick={this.closeForm}>CANCEL</button> : null}
-            </div>
-            </div>
-            <button onClick={this.destroyUser}>DELETE</button>
+          </div>
+            <div className="article-grid">
+              <div className="article-column profile">
+                <div className="article-text">
+                  <div className="number-container"><span className="number">@{this.props.userData.name}</span></div>
+                  <div className="article-title">
+                    Age: {this.props.userData.age}
+                    <br/>
+                    Location: {this.props.userData.location}
+                  </div>
+                </div>
+                <div  className="article-buttons">
+                  <button onClick={this.setFormToState} className="block-button">UPDATE</button>
+                  {this.state.showForm === true ? <button onClick={this.closeForm} className="block-button">CANCEL</button> : null}
+                  <button onClick={this.destroyUser} className="block-button">DELETE</button>
+                </div>
+              </div>
               {this.renderArticles()}
             </div>
           </div>
-        </div>
       )
     } else {
       this.props.history.push('/')
       return <div></div>
     }
   }
-  // <div>
-  // <h4>Friends</h4>
-  // {this.renderFriendCards()}
-  // </div>
 
   render() {
-    // console.log(this.props);
     return this.renderUserData()
   }
 }

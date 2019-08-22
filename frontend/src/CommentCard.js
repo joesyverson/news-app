@@ -4,7 +4,12 @@ const Comment = (props) => {
 
 
   function displayComment() {
-    return props.data.comment_user + ": " + props.data.content + ` [${props.data.updated_at.slice(0, 10)}]`
+    return (
+      <div>
+        <div><span className="comment-author">{props.data.comment_user + ": "}</span>{" " + props.data.content}</div>
+        <div className="comment-date">{props.data.updated_at.slice(0, 10)}</div>
+      </div>
+    )
   }
 
   function showDeleteButton() {
@@ -13,9 +18,12 @@ const Comment = (props) => {
     }
   }
 
+
   return(
     <div className="comment">
-      {props.data ? displayComment() : null}
+      <div className="comment-text">
+        {props.data ? displayComment() : null}
+      </div>
       <div className="delete-comment">
         {props.data ? showDeleteButton() : null}
       </div>

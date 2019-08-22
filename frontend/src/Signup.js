@@ -87,7 +87,7 @@ class Signup extends React.Component {
   render() {
     return(
       <React.Fragment>
-        <button className="flex-column" onClick={() => this.setState({showForm: !this.state.showForm})}>SIGNUP</button>
+        <button className="flex-column" onClick={() => this.setState({showForm: !this.state.showForm})}>S I G N U P</button>
         <br/>
         <br/>
         {this.state.showForm ? this.showForm() : null}

@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login.js';
 import ArticleCard from './ArticleCard.js';
-import Comment from './CommentCard.js';
+// import Comment from './CommentCard.js';
 
 class ArticleContainer extends React.Component {
 
@@ -22,8 +22,24 @@ class ArticleContainer extends React.Component {
     if(localStorage.token) {
       return(
         <div className="flex-container">
-          <NavLink to="/profile" className="button flex-column" >PROFILE</NavLink>
-          <NavLink to="/" className="button flex-column" onClick={() => localStorage.clear()}>SIGNOUT</NavLink>
+          <NavLink to="/profile" className="button flex-column header-button-left" >
+            <span>P </span>
+            <span>R </span>
+            <span>O </span>
+            <span>F </span>
+            <span>I </span>
+            <span>L </span>
+            <span>E </span>
+          </NavLink>
+          <NavLink to="/" className="button flex-column" onClick={() => localStorage.clear()}>
+          <span>S </span>
+          <span>I </span>
+          <span>G </span>
+          <span>N </span>
+          <span>O </span>
+          <span>U </span>
+          <span>T </span>
+          </NavLink>
         </div>
       );
     } else {
@@ -68,6 +84,7 @@ class ArticleContainer extends React.Component {
     let newDate = day + " " + month + " " + year
     return newDate
   }
+
 
   render(){
     console.log(this.showDate());
