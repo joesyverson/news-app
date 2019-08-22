@@ -277,6 +277,11 @@ input, textarea {
   margin-bottom: 1vw;
   font-size: 1.25em;
   color: white;
+  /* background-color: RGB(255, 102, 0);
+  max-width: 84vw;
+  border: 0.5vw;
+  border-color: white;
+  padding: 0.5vw */
 }
 
 #username {
