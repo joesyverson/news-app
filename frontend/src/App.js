@@ -11,6 +11,10 @@ class App extends React.Component {
     extAPIArticles: []
   }
 
+  setDaInterval = () => {
+    window.setInterval(() => this.fetchGetArticles(), 1200000)
+  }
+
   fetchGetProfile = () => {
     // debugger
     if (localStorage.token) {
@@ -84,6 +88,7 @@ class App extends React.Component {
 
 
   request = () => {
+    // debugger
     var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=d1a63a25170149fcb27fe09d94da4de9';
     let req = new Request(url);
     return req
@@ -96,6 +101,9 @@ class App extends React.Component {
       extAPIArticles: json.articles.slice(0, 10),
       userData: this.state.userData
     }))
+    // .then(this.setDaInterval)
+    // .then(() => setInterval(this.fetchGetArticles, 15000))
+    // .then(() => console.log('interval'))
   }
 
   componentDidMount() {

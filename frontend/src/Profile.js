@@ -191,7 +191,7 @@ class Profile extends React.Component {
               <div className="article-column profile">
                 <div className="article-text">
                   <div className="number-container"><span className="number">@{this.props.userData.name}</span></div>
-                  <div className="article-title">
+                  <div className="article-title" id="user-data">
                     Age: {this.props.userData.age}
                     <br/>
                     Location: {this.props.userData.location}

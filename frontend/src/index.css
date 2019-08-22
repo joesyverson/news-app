@@ -123,6 +123,7 @@ input, textarea {
   margin-bottom: 3.5vw; */
   background-color: grey;
   color: white;
+  font-size: 1.25em;
 }
 
 .error {
@@ -228,6 +229,7 @@ input, textarea {
   /* padding: 1vw; */
   /* margin-bottom: 1.5vw; */
   text-align: center;
+  font-size: 1.25em;
 }
 
 .article-title {
@@ -252,6 +254,7 @@ input, textarea {
   align-self: flex-end;
   width: 100%;
 }
+
 
 ::-webkit-scrollbar {
   width: 0;
@@ -278,4 +281,8 @@ input, textarea {
 
 #username {
   font-size: 1.75em;
+}
+
+#user-data {
+  font-size: 1.75em,
 }
