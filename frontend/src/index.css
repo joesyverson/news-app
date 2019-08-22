@@ -28,7 +28,7 @@ button:focus, .button:focus {
 }
 
 button:hover, .button:hover {
-  background-color: RGB(212, 25, 25);
+  background-color: RGB(255, 102, 0);
   color: white;
 }
 
@@ -50,7 +50,7 @@ input, textarea {
   font-size: inherit;
   border: 0.005vw;
   border-style: solid;
-  border-color: RGB(212, 25, 25);
+  border-color: RGB(255, 102, 0);
   padding: 1vw;
   font-size: 100%;
   /* border: 0.005vw; */
@@ -120,7 +120,7 @@ input, textarea {
 }
 
 .error {
-  background-color: RGB(212, 25, 25);
+  background-color: RGB(255, 102, 0);
   color: white;
   padding: 1vw;
   text-align: center;
@@ -168,9 +168,9 @@ input, textarea {
 } */
 
 .number {
-  /* width: 100px; */
-  /* height: 100px; */
-  background-color: RGB(212, 25, 25);
+  /* FIRE: background-color: RGB(255, 89, 0); */
+  background-color: RGB(255, 102, 0);
+  /* RED: background-color: RGB(255, 102, 0); */
   color: white;
   margin-bottom: 1.5vw;
   text-align: center;
@@ -258,7 +258,7 @@ input, textarea {
 
 
 #attribution:hover {
-  color: RGB(212, 25, 25);
+  color: RGB(255, 102, 0);
 }
 
 #date {
