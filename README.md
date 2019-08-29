@@ -1,4 +1,9 @@
-#TOP TEN
+TOP TEN
+=======
+
+`Top Ten` is a social media application where user interaction finds basis in the top ten most recent headlines, as provided by [NewsAPI](https://newsapi.org/). It uses a Rails backend, React frontend, and vanilla CSS for styling.
+
+On page-load and interval after page-load, the application fetches then renders the ten most recent headlines.
 
 ![](./demo-gifs/00-news-api.gif)
 
