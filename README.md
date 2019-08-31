@@ -116,3 +116,7 @@ This application is not complete. Future functionality will allow features such 
 ![](./demo-gifs/26-front-end-mess.gif)
 
 To be continued...
+
+#### Developed by Joseph Syverson, August 2019
+
+https://github.com/joesyverson/news-app
